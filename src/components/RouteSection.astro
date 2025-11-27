@@ -5,6 +5,8 @@ const routeHighlights = [
   { label: 'Meta', value: 'Kościół, Popiełuszki 9' },
   { label: 'Dystans', value: '5 km' },
   { label: 'Nawierzchnia', value: 'Asfalt' },
+  { label: 'Profil', value: 'Praktycznie płaska' },
+  { label: 'Mapa', value: 'Google Maps', isLink: true, href: 'https://maps.app.goo.gl/hhnTZ8qnE4tdfhjB9' },
 ]
 ---
 
@@ -58,51 +60,33 @@ const routeHighlights = [
         <!-- Route highlights -->
         <div class="grid sm:grid-cols-2 gap-4">
           {routeHighlights.map(item => (
-            <div class="flex items-center gap-4 p-4 bg-white/5 border-l-2 border-brand-yellow">
-              <div>
-                <div class="text-white/50 text-xs font-headline uppercase tracking-wider">
-                  {item.label}
+            item.isLink ? (
+              <a href={item.href} target="_blank" rel="noopener noreferrer" class="flex items-center gap-4 p-4 bg-white/5 border-l-2 border-brand-yellow hover:bg-white/10 transition-colors group">
+                <div>
+                  <div class="text-white/50 text-xs font-headline uppercase tracking-wider">
+                    {item.label}
+                  </div>
+                  <div class="text-brand-yellow font-headline text-lg mt-0.5 flex items-center gap-2 group-hover:text-white transition-colors">
+                    {item.value}
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    </svg>
+                  </div>
                 </div>
-                <div class="text-white font-headline text-lg mt-0.5">
-                  {item.value}
+              </a>
+            ) : (
+              <div class="flex items-center gap-4 p-4 bg-white/5 border-l-2 border-brand-yellow">
+                <div>
+                  <div class="text-white/50 text-xs font-headline uppercase tracking-wider">
+                    {item.label}
+                  </div>
+                  <div class="text-white font-headline text-lg mt-0.5">
+                    {item.value}
+                  </div>
                 </div>
               </div>
-            </div>
+            )
           ))}
-        </div>
-
-        <!-- Route description -->
-        <div class="bg-white/5 backdrop-blur-sm p-6 border border-white/10">
-          <h3 class="font-headline text-white text-lg mb-3">Opis trasy</h3>
-          <ol class="space-y-2 text-white/70 text-sm">
-            <li class="flex gap-3">
-              <span class="flex-shrink-0 w-6 h-6 bg-brand-yellow text-ink font-headline text-xs flex items-center justify-center">A</span>
-              <span>Start przy Biedronce na ul. Maratońskiej 93</span>
-            </li>
-            <li class="flex gap-3">
-              <span class="flex-shrink-0 w-6 h-6 bg-white/10 text-white font-headline text-xs flex items-center justify-center">→</span>
-              <span>Pętla przez główne ulice Retkini</span>
-            </li>
-            <li class="flex gap-3">
-              <span class="flex-shrink-0 w-6 h-6 bg-brand-yellow text-ink font-headline text-xs flex items-center justify-center">B</span>
-              <span>Meta przy kościele pw. Najświętszej Eucharystii (Popiełuszki 9)</span>
-            </li>
-            <li class="flex gap-3">
-              <span class="flex-shrink-0 w-6 h-6 bg-white/10 text-white font-headline text-xs flex items-center justify-center">🎉</span>
-              <span>Biuro zawodów i strefa piknikowa przy kościele</span>
-            </li>
-          </ol>
-          <a
-            href="https://maps.app.goo.gl/hhnTZ8qnE4tdfhjB9"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="inline-flex items-center gap-2 mt-4 text-brand-yellow font-headline text-sm uppercase tracking-wide hover:text-white transition-colors"
-          >
-            <span>Zobacz trasę na Google Maps</span>
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-            </svg>
-          </a>
         </div>
       </div>
     </div>
