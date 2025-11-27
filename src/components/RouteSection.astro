@@ -1,9 +1,10 @@
 ---
+const base = import.meta.env.BASE_URL;
 const routeHighlights = [
-  { label: 'Start / Meta', value: 'Park na Retkini' },
+  { label: 'Start', value: 'Biedronka, Maratońska 93' },
+  { label: 'Meta', value: 'Kościół, Popiełuszki 9' },
   { label: 'Dystans', value: '5 km' },
   { label: 'Nawierzchnia', value: 'Asfalt' },
-  { label: 'Przewyższenia', value: 'Minimalne' },
 ]
 ---
 
@@ -13,38 +14,16 @@ const routeHighlights = [
 
   <div class="container-wide relative z-10">
     <div class="grid lg:grid-cols-2 gap-16 items-center">
-      <!-- Left: Map placeholder -->
+      <!-- Left: Map -->
       <div class="relative order-2 lg:order-1">
         <div class="aspect-square bg-white/5 backdrop-blur-sm border border-white/10 p-4">
-          <!-- Map placeholder -->
-          <div class="w-full h-full bg-brand-teal/50 flex items-center justify-center relative overflow-hidden">
-            <!-- Stylized route preview -->
-            <svg class="absolute inset-0 w-full h-full opacity-20" viewBox="0 0 100 100" preserveAspectRatio="none">
-              <path
-                d="M20 80 Q30 70 40 75 T60 65 T80 70 Q90 60 85 50 T75 30 Q65 20 50 25 T30 35 Q20 40 25 55 T20 80"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="0.5"
-                class="text-brand-yellow"
-              />
-            </svg>
-
-            <div class="text-center relative z-10">
-              <div class="font-display text-6xl text-white/30 mb-4">5 KM</div>
-              <p class="text-white/50 text-sm font-body">
-                Interaktywna mapa trasy wkrótce
-              </p>
-              <a
-                href="#"
-                class="inline-flex items-center gap-2 mt-4 text-brand-yellow font-headline text-sm uppercase tracking-wide hover:text-brand-yellow-light transition-colors"
-              >
-                <span>Zobacz trasę na Google Maps</span>
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                </svg>
-              </a>
-            </div>
-          </div>
+          <a href="https://maps.app.goo.gl/hhnTZ8qnE4tdfhjB9" target="_blank" rel="noopener noreferrer" class="block">
+            <img
+              src={`${base}images/route-map.png`}
+              alt="Mapa trasy biegu Retkińska Piątka - 5km przez Retkini"
+              class="w-full h-full object-cover hover:opacity-90 transition-opacity"
+            />
+          </a>
 
           <!-- Corner markers -->
           <div class="absolute top-2 left-2 w-4 h-4 border-t-2 border-l-2 border-brand-yellow"></div>
@@ -72,7 +51,7 @@ const routeHighlights = [
         </div>
 
         <p class="text-white/70 text-lg leading-relaxed max-w-lg">
-          Trasa prowadzi malowniczymi ulicami dzielnicy Retkinia. Płaski profil sprawia,
+          Trasa prowadzi ulicami dzielnicy Retkinia. Płaski profil sprawia,
           że jest idealna zarówno dla amatorów, jak i tych, którzy chcą pobić życiówkę!
         </p>
 
@@ -97,22 +76,33 @@ const routeHighlights = [
           <h3 class="font-headline text-white text-lg mb-3">Opis trasy</h3>
           <ol class="space-y-2 text-white/70 text-sm">
             <li class="flex gap-3">
-              <span class="flex-shrink-0 w-6 h-6 bg-brand-yellow text-ink font-headline text-xs flex items-center justify-center">1</span>
-              <span>Start z parku na Retkini</span>
+              <span class="flex-shrink-0 w-6 h-6 bg-brand-yellow text-ink font-headline text-xs flex items-center justify-center">A</span>
+              <span>Start przy Biedronce na ul. Maratońskiej 93</span>
             </li>
             <li class="flex gap-3">
-              <span class="flex-shrink-0 w-6 h-6 bg-white/10 text-white font-headline text-xs flex items-center justify-center">2</span>
-              <span>Pętla przez główne ulice dzielnicy</span>
+              <span class="flex-shrink-0 w-6 h-6 bg-white/10 text-white font-headline text-xs flex items-center justify-center">→</span>
+              <span>Pętla przez główne ulice Retkini</span>
             </li>
             <li class="flex gap-3">
-              <span class="flex-shrink-0 w-6 h-6 bg-white/10 text-white font-headline text-xs flex items-center justify-center">3</span>
-              <span>Punkt nawadniania na 2.5 km</span>
+              <span class="flex-shrink-0 w-6 h-6 bg-brand-yellow text-ink font-headline text-xs flex items-center justify-center">B</span>
+              <span>Meta przy kościele pw. Najświętszej Eucharystii (Popiełuszki 9)</span>
             </li>
             <li class="flex gap-3">
-              <span class="flex-shrink-0 w-6 h-6 bg-brand-yellow text-ink font-headline text-xs flex items-center justify-center">4</span>
-              <span>Meta w miejscu startu - wspólna strefa piknikowa</span>
+              <span class="flex-shrink-0 w-6 h-6 bg-white/10 text-white font-headline text-xs flex items-center justify-center">🎉</span>
+              <span>Biuro zawodów i strefa piknikowa przy kościele</span>
             </li>
           </ol>
+          <a
+            href="https://maps.app.goo.gl/hhnTZ8qnE4tdfhjB9"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 mt-4 text-brand-yellow font-headline text-sm uppercase tracking-wide hover:text-white transition-colors"
+          >
+            <span>Zobacz trasę na Google Maps</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+            </svg>
+          </a>
         </div>
       </div>
     </div>
