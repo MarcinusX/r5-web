@@ -79,7 +79,7 @@ All photos must include photographer attribution. Use this pattern:
 
 ## Key External Links
 
-- Facebook event: https://www.facebook.com/events/9897692227012010
+- Facebook fanpage: https://www.facebook.com/profile.php?id=61576316956069
 - Photos 2024: https://radiolodz.pl/bieg-charytatywny-na-rzecz-fundacji-gajusz-zdjecia,429813/
 - Fundacja Rampa: https://rampa.org.pl/
 
