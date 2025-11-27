@@ -1,0 +1,217 @@
+---
+import Layout from '../layouts/Layout.astro'
+
+const base = import.meta.env.BASE_URL;
+
+const contactReasons = [
+  { value: '', label: 'Wybierz temat...' },
+  { value: 'rejestracja', label: 'Pytania o rejestrację' },
+  { value: 'partnerstwo', label: 'Sponsoring / Partnerstwo' },
+  { value: 'wolontariat', label: 'Wolontariat' },
+  { value: 'media', label: 'Media / Prasa' },
+  { value: 'trasa', label: 'Pytania o trasę' },
+  { value: 'wyniki', label: 'Pytania o wyniki' },
+  { value: 'inne', label: 'Inne' },
+]
+---
+
+<Layout title="Kontakt - Retkińska Piątka">
+  <!-- Navigation -->
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-brand-teal-dark/98 backdrop-blur-sm shadow-lg">
+    <div class="container-wide">
+      <div class="flex items-center justify-between h-20 lg:h-24">
+        <a href={`${base}`} class="relative z-10 flex items-center gap-3 group">
+          <div class="w-12 h-12 lg:w-14 lg:h-14 overflow-hidden">
+            <img
+              src={`${base}images/logo.png`}
+              alt="Retkińska Piątka"
+              class="w-full h-full object-contain transition-transform duration-300 group-hover:scale-105"
+            />
+          </div>
+          <div class="hidden sm:block">
+            <span class="font-display text-lg lg:text-xl text-white">Retkińska</span>
+            <span class="font-display text-lg lg:text-xl text-brand-yellow">5</span>
+          </div>
+        </a>
+        <a href={`${base}`} class="font-headline text-sm uppercase tracking-wider text-white/80 hover:text-brand-yellow transition-colors">
+          Powrót do strony głównej
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="min-h-screen bg-brand-teal-dark pt-32 pb-24">
+    <div class="container-narrow">
+      <!-- Header -->
+      <div class="text-center mb-12">
+        <span class="section-label text-white/40 before:bg-brand-yellow">Formularz kontaktowy</span>
+        <h1 class="font-display text-5xl lg:text-6xl xl:text-7xl text-white mt-4">
+          Napisz<br/>
+          <span class="text-brand-yellow">do nas</span>
+        </h1>
+        <p class="text-white/70 text-lg mt-6 max-w-xl mx-auto">
+          Masz pytanie dotyczące biegu, chcesz zostać partnerem lub wolontariuszem? Wypełnij formularz, a odpowiemy najszybciej jak to możliwe.
+        </p>
+      </div>
+
+      <!-- Contact Form -->
+      <div class="bg-white p-8 lg:p-12 shadow-2xl max-w-2xl mx-auto">
+        <form id="contact-form" class="space-y-6">
+          <!-- Reason dropdown -->
+          <div>
+            <label for="reason" class="block text-ink font-headline text-sm uppercase tracking-wider mb-2">
+              Temat wiadomości <span class="text-red-500">*</span>
+            </label>
+            <select
+              id="reason"
+              name="reason"
+              required
+              class="w-full px-4 py-3 border-2 border-ink/10 bg-white text-ink font-body text-lg focus:border-brand-teal focus:outline-none transition-colors"
+            >
+              {contactReasons.map(reason => (
+                <option value={reason.value} disabled={reason.value === ''} selected={reason.value === ''}>
+                  {reason.label}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <!-- Email -->
+          <div>
+            <label for="email" class="block text-ink font-headline text-sm uppercase tracking-wider mb-2">
+              Twój adres e-mail <span class="text-red-500">*</span>
+            </label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              required
+              placeholder="jan.kowalski@example.com"
+              class="w-full px-4 py-3 border-2 border-ink/10 bg-white text-ink font-body text-lg placeholder:text-ink/30 focus:border-brand-teal focus:outline-none transition-colors"
+            />
+          </div>
+
+          <!-- Name (optional) -->
+          <div>
+            <label for="name" class="block text-ink font-headline text-sm uppercase tracking-wider mb-2">
+              Imię i nazwisko
+            </label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              placeholder="Jan Kowalski"
+              class="w-full px-4 py-3 border-2 border-ink/10 bg-white text-ink font-body text-lg placeholder:text-ink/30 focus:border-brand-teal focus:outline-none transition-colors"
+            />
+          </div>
+
+          <!-- Message -->
+          <div>
+            <label for="message" class="block text-ink font-headline text-sm uppercase tracking-wider mb-2">
+              Treść wiadomości <span class="text-red-500">*</span>
+            </label>
+            <textarea
+              id="message"
+              name="message"
+              required
+              rows="6"
+              placeholder="Napisz swoją wiadomość..."
+              class="w-full px-4 py-3 border-2 border-ink/10 bg-white text-ink font-body text-lg placeholder:text-ink/30 focus:border-brand-teal focus:outline-none transition-colors resize-none"
+            ></textarea>
+          </div>
+
+          <!-- Submit button -->
+          <div class="pt-4">
+            <button
+              type="submit"
+              class="btn-primary w-full justify-center text-lg py-4"
+            >
+              <span>Wyślij wiadomość</span>
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+              </svg>
+            </button>
+          </div>
+
+          <p class="text-ink-muted text-sm text-center">
+            Pola oznaczone <span class="text-red-500">*</span> są wymagane
+          </p>
+        </form>
+
+        <!-- Success message (hidden by default) -->
+        <div id="success-message" class="hidden text-center py-8">
+          <div class="inline-flex items-center justify-center w-16 h-16 bg-green-100 rounded-full mb-4">
+            <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+          </div>
+          <h3 class="font-display text-2xl text-ink mb-2">Wiadomość wysłana!</h3>
+          <p class="text-ink-muted">Dziękujemy za kontakt. Odpowiemy najszybciej jak to możliwe.</p>
+        </div>
+      </div>
+
+      <!-- Alternative contact -->
+      <div class="text-center mt-12">
+        <p class="text-white/60">
+          Możesz też napisać bezpośrednio na adres:<br/>
+          <a href="mailto:marcinszalek1@gmail.com" class="text-brand-yellow hover:underline">
+            marcinszalek1@gmail.com
+          </a>
+        </p>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-ink py-8">
+    <div class="container-wide text-center">
+      <p class="text-white/40 text-sm">
+        &copy; 2024-2026 Retkińska Piątka. Wszystkie prawa zastrzeżone.
+      </p>
+    </div>
+  </footer>
+</Layout>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement;
+  const successMessage = document.getElementById('success-message');
+
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(form);
+    const reason = formData.get('reason');
+    const email = formData.get('email');
+    const name = formData.get('name');
+    const message = formData.get('message');
+
+    // Build mailto link
+    const subject = encodeURIComponent(`[Retkińska Piątka] ${getReasonLabel(reason as string)}`);
+    const body = encodeURIComponent(
+      `Temat: ${getReasonLabel(reason as string)}\n` +
+      `Od: ${name || 'Nie podano'}\n` +
+      `Email: ${email}\n\n` +
+      `Wiadomość:\n${message}`
+    );
+
+    // Open mailto
+    window.location.href = `mailto:marcinszalek1@gmail.com?subject=${subject}&body=${body}`;
+
+    // Show success message
+    form.classList.add('hidden');
+    successMessage?.classList.remove('hidden');
+  });
+
+  function getReasonLabel(value: string): string {
+    const reasons: Record<string, string> = {
+      'rejestracja': 'Pytania o rejestrację',
+      'partnerstwo': 'Sponsoring / Partnerstwo',
+      'wolontariat': 'Wolontariat',
+      'media': 'Media / Prasa',
+      'trasa': 'Pytania o trasę',
+      'wyniki': 'Pytania o wyniki',
+      'inne': 'Inne',
+    };
+    return reasons[value] || value;
+  }
+</script>
