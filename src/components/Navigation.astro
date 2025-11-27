@@ -48,13 +48,17 @@ const navLinks = [
 
       <!-- Mobile Menu Button -->
       <button
-        class="lg:hidden relative z-10 w-10 h-10 flex flex-col items-center justify-center gap-1.5"
+        class="lg:hidden relative z-10 w-10 h-10 flex items-center justify-center text-white"
         id="mobile-menu-btn"
         aria-label="Menu"
+        type="button"
       >
-        <span class="w-6 h-0.5 bg-white transition-all duration-300 menu-line-1"></span>
-        <span class="w-6 h-0.5 bg-white transition-all duration-300 menu-line-2"></span>
-        <span class="w-4 h-0.5 bg-white transition-all duration-300 menu-line-3 ml-auto"></span>
+        <svg class="w-7 h-7 menu-icon-open" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+        <svg class="w-7 h-7 menu-icon-close hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
       </button>
     </div>
   </div>
@@ -85,6 +89,15 @@ const navLinks = [
 </nav>
 
 <style>
+  #mobile-menu-btn {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  #mobile-menu-btn:focus {
+    outline: none;
+    box-shadow: none;
+  }
+
   nav {
     background: linear-gradient(to bottom, rgba(30, 69, 82, 0.95), transparent);
   }
@@ -104,17 +117,12 @@ const navLinks = [
     pointer-events: auto;
   }
 
-  #mobile-menu-btn.active .menu-line-1 {
-    transform: rotate(45deg) translate(4px, 4px);
+  #mobile-menu-btn.active .menu-icon-open {
+    display: none;
   }
 
-  #mobile-menu-btn.active .menu-line-2 {
-    opacity: 0;
-  }
-
-  #mobile-menu-btn.active .menu-line-3 {
-    width: 1.5rem;
-    transform: rotate(-45deg) translate(4px, -4px);
+  #mobile-menu-btn.active .menu-icon-close {
+    display: block;
   }
 
   .mobile-nav-link {
