@@ -4,9 +4,8 @@ import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
-  // Odkomentuj poniższe linie przed deploy na GitHub Pages:
-  // site: 'https://yourusername.github.io',
-  // base: '/retkinska-piatka',
+  site: 'https://MarcinusX.github.io',
+  base: '/r5-web',
   vite: {
     plugins: [tailwindcss()]
   }
