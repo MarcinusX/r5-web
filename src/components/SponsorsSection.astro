@@ -1,0 +1,106 @@
+---
+// Sponsor tiers - będą uzupełniane o prawdziwe loga
+const sponsorTiers = [
+  {
+    name: 'Partner Główny',
+    sponsors: [
+      { name: 'Twoja firma?', placeholder: true },
+    ]
+  },
+  {
+    name: 'Partnerzy',
+    sponsors: [
+      { name: 'Partner 1', placeholder: true },
+      { name: 'Partner 2', placeholder: true },
+      { name: 'Partner 3', placeholder: true },
+    ]
+  },
+  {
+    name: 'Patronat',
+    sponsors: [
+      { name: 'Prezydent Miasta Łodzi', placeholder: true },
+      { name: 'PZLA', placeholder: true },
+    ]
+  }
+]
+---
+
+<section id="sponsorzy" class="relative py-24 lg:py-32 bg-paper overflow-hidden">
+  <!-- Decorative element -->
+  <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-brand-teal via-brand-yellow to-brand-teal"></div>
+
+  <div class="container-wide relative z-10">
+    <!-- Header -->
+    <div class="text-center max-w-2xl mx-auto mb-16">
+      <span class="section-label justify-center">Partnerzy</span>
+      <h2 class="font-display text-5xl lg:text-6xl xl:text-7xl text-ink mt-4">
+        Wspierają<br/>
+        <span class="text-brand-teal">Retkińską Piątkę</span>
+      </h2>
+      <p class="text-ink-muted text-lg mt-6">
+        Dziękujemy wszystkim partnerom, którzy pomagają nam organizować to wydarzenie.
+      </p>
+    </div>
+
+    <!-- Sponsor Tiers -->
+    <div class="space-y-16">
+      {sponsorTiers.map((tier, tierIndex) => (
+        <div class="text-center">
+          <h3 class="font-headline text-sm uppercase tracking-widest text-ink-muted mb-8">
+            {tier.name}
+          </h3>
+
+          <div class={`flex flex-wrap justify-center items-center gap-8 ${tierIndex === 0 ? 'gap-12' : ''}`}>
+            {tier.sponsors.map(sponsor => (
+              <div
+                class={`
+                  ${tierIndex === 0 ? 'w-64 h-32' : 'w-40 h-20'}
+                  bg-white border-2 border-dashed border-ink/10 flex items-center justify-center
+                  hover:border-brand-teal hover:shadow-lg transition-all duration-300 group
+                `}
+              >
+                {sponsor.placeholder ? (
+                  <div class="text-center px-4">
+                    <div class="text-ink/20 text-sm font-body group-hover:text-brand-teal transition-colors">
+                      {sponsor.name}
+                    </div>
+                  </div>
+                ) : (
+                  <img
+                    src={sponsor.logo}
+                    alt={sponsor.name}
+                    class="max-w-full max-h-full object-contain p-4 grayscale group-hover:grayscale-0 transition-all duration-300"
+                  />
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- CTA for sponsors -->
+    <div class="mt-20 text-center">
+      <div class="inline-block bg-brand-teal/5 border border-brand-teal/20 p-8 lg:p-12 max-w-2xl">
+        <h3 class="font-headline text-2xl text-ink mb-4">
+          Chcesz zostać partnerem?
+        </h3>
+        <p class="text-ink-muted mb-6">
+          Dołącz do grona firm wspierających sport i działalność charytatywną.
+          Oferujemy różne pakiety partnerskie dopasowane do Twoich możliwości.
+        </p>
+        <div class="flex flex-wrap justify-center gap-4">
+          <a href="#kontakt" class="btn-primary">
+            Skontaktuj się z nami
+          </a>
+          <a
+            href="#"
+            class="btn-secondary border-brand-teal text-brand-teal hover:bg-brand-teal hover:text-white"
+          >
+            Pobierz ofertę (PDF)
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

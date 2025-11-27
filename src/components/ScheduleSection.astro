@@ -1,0 +1,157 @@
+---
+const scheduleItems = [
+  { time: '08:00', title: 'Otwarcie biura zawodów', description: 'Odbiór pakietów startowych, weryfikacja uczestników' },
+  { time: '09:00', title: 'Rozgrzewka', description: 'Wspólna rozgrzewka z instruktorem' },
+  { time: '09:30', title: 'Ceremonia otwarcia', description: 'Przemówienia, hymn, przygotowanie do startu' },
+  { time: '10:00', title: 'START BIEGU', description: 'Główny bieg na dystansie 5 km', isHighlight: true },
+  { time: '10:30', title: 'Bieg dzieci', description: 'Mini bieg dla najmłodszych uczestników' },
+  { time: '11:00', title: 'Dekoracja zwycięzców', description: 'Wręczenie nagród i medali' },
+  { time: '11:30', title: 'Strefa piknikowa', description: 'Wspólne świętowanie, poczęstunek, atrakcje' },
+]
+---
+
+<section id="harmonogram" class="relative py-24 lg:py-32 bg-paper-warm overflow-hidden">
+  <!-- Decorative elements -->
+  <div class="absolute top-0 right-0 w-64 h-64 bg-brand-yellow/5 rounded-full -translate-y-1/2 translate-x-1/2" aria-hidden="true"></div>
+  <div class="absolute bottom-0 left-0 w-96 h-96 bg-brand-teal/5 rounded-full translate-y-1/2 -translate-x-1/2" aria-hidden="true"></div>
+
+  <div class="container-wide relative z-10">
+    <!-- Header -->
+    <div class="text-center max-w-2xl mx-auto mb-16">
+      <span class="section-label justify-center">Harmonogram</span>
+      <h2 class="font-display text-5xl lg:text-6xl xl:text-7xl text-ink mt-4">
+        Plan<br/>
+        <span class="text-brand-teal">dnia biegu</span>
+      </h2>
+      <p class="text-ink-muted text-lg mt-6">
+        20 września 2026 roku. Zapisz tę datę w kalendarzu!
+      </p>
+    </div>
+
+    <!-- Timeline -->
+    <div class="max-w-2xl mx-auto">
+      {scheduleItems.map((item, index) => (
+        <div class={`timeline-item ${item.isHighlight ? 'is-highlight' : ''}`}>
+          <!-- Time -->
+          <div class="timeline-time">
+            <span class={`font-display text-2xl lg:text-3xl ${item.isHighlight ? 'text-brand-yellow' : 'text-brand-teal'}`}>
+              {item.time}
+            </span>
+          </div>
+
+          <!-- Dot & Line -->
+          <div class="timeline-marker">
+            <div class={`timeline-dot ${item.isHighlight ? 'highlight' : ''}`}>
+              {item.isHighlight && <div class="timeline-dot-ping"></div>}
+            </div>
+            {index < scheduleItems.length - 1 && <div class="timeline-line"></div>}
+          </div>
+
+          <!-- Content -->
+          <div class={`timeline-content ${item.isHighlight ? 'bg-brand-teal p-5' : ''}`}>
+            <h3 class={`font-headline text-xl lg:text-2xl ${item.isHighlight ? 'text-white' : 'text-ink'}`}>
+              {item.title}
+            </h3>
+            <p class={`text-sm mt-1 ${item.isHighlight ? 'text-white/80' : 'text-ink-muted'}`}>
+              {item.description}
+            </p>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- CTA -->
+    <div class="text-center mt-16">
+      <p class="text-ink-muted mb-6">
+        Szczegółowy regulamin dostępny po rejestracji
+      </p>
+      <a href="#zapisz-sie" class="btn-primary bg-brand-teal text-white hover:bg-brand-teal-dark">
+        <span>Zarejestruj się teraz</span>
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .timeline-item {
+    display: grid;
+    grid-template-columns: 80px 24px 1fr;
+    gap: 16px;
+    align-items: start;
+    min-height: 80px;
+  }
+
+  @media (max-width: 640px) {
+    .timeline-item {
+      grid-template-columns: 60px 20px 1fr;
+      gap: 12px;
+    }
+  }
+
+  .timeline-time {
+    text-align: right;
+    padding-top: 2px;
+  }
+
+  .timeline-marker {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+  }
+
+  .timeline-dot {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background-color: var(--color-paper-warm);
+    border: 3px solid var(--color-brand-teal);
+    position: relative;
+    z-index: 2;
+    flex-shrink: 0;
+    margin-top: 4px;
+  }
+
+  .timeline-dot.highlight {
+    width: 20px;
+    height: 20px;
+    background-color: var(--color-brand-yellow);
+    border-color: var(--color-brand-yellow);
+    margin-top: 2px;
+  }
+
+  .timeline-dot-ping {
+    position: absolute;
+    inset: -4px;
+    border-radius: 50%;
+    background-color: var(--color-brand-yellow);
+    animation: ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;
+  }
+
+  @keyframes ping {
+    75%, 100% {
+      transform: scale(2);
+      opacity: 0;
+    }
+  }
+
+  .timeline-line {
+    width: 2px;
+    flex: 1;
+    min-height: 40px;
+    background-color: var(--color-brand-teal);
+    opacity: 0.2;
+    margin-top: 8px;
+  }
+
+  .timeline-content {
+    padding-bottom: 24px;
+  }
+
+  .timeline-item.is-highlight .timeline-content {
+    margin-top: -4px;
+  }
+</style>

@@ -1,0 +1,74 @@
+---
+const currentYear = new Date().getFullYear()
+---
+
+<footer class="bg-ink py-12 lg:py-16">
+  <div class="container-wide">
+    <div class="grid md:grid-cols-3 gap-12 items-center">
+      <!-- Logo & Tagline -->
+      <div class="text-center md:text-left">
+        <div class="flex items-center gap-3 justify-center md:justify-start">
+          <img
+            src="/images/logo.png"
+            alt="Retkińska Piątka"
+            class="w-12 h-12 object-contain"
+          />
+          <div>
+            <span class="font-display text-lg text-white">Retkińska</span>
+            <span class="font-display text-lg text-brand-yellow">5</span>
+          </div>
+        </div>
+        <p class="text-white/40 text-sm mt-3 font-body">
+          Charytatywny bieg na 5km w Łodzi
+        </p>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="text-center">
+        <nav class="flex flex-wrap justify-center gap-x-6 gap-y-2">
+          <a href="#o-biegu" class="text-white/60 hover:text-brand-yellow text-sm font-body transition-colors">
+            O biegu
+          </a>
+          <a href="#trasa" class="text-white/60 hover:text-brand-yellow text-sm font-body transition-colors">
+            Trasa
+          </a>
+          <a href="#harmonogram" class="text-white/60 hover:text-brand-yellow text-sm font-body transition-colors">
+            Harmonogram
+          </a>
+          <a href="#kontakt" class="text-white/60 hover:text-brand-yellow text-sm font-body transition-colors">
+            Kontakt
+          </a>
+        </nav>
+      </div>
+
+      <!-- Social & Copyright -->
+      <div class="text-center md:text-right">
+        <a
+          href="https://www.facebook.com/events/9897692227012010"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 text-white/60 hover:text-brand-yellow text-sm font-body transition-colors"
+        >
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+          </svg>
+          <span>Facebook</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Divider -->
+    <div class="my-8 border-t border-white/10"></div>
+
+    <!-- Bottom bar -->
+    <div class="flex flex-col md:flex-row justify-between items-center gap-4 text-white/30 text-xs font-body">
+      <div>
+        © {currentYear} Retkińska Piątka. Organizator: Parafia Najświętszej Eucharystii w Łodzi
+      </div>
+      <div class="flex gap-4">
+        <a href="#" class="hover:text-white/60 transition-colors">Polityka prywatności</a>
+        <a href="#" class="hover:text-white/60 transition-colors">Regulamin</a>
+      </div>
+    </div>
+  </div>
+</footer>

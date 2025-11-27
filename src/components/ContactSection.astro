@@ -1,0 +1,146 @@
+---
+const socialLinks = [
+  {
+    name: 'Facebook',
+    url: 'https://www.facebook.com/events/9897692227012010',
+    icon: 'M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z',
+  },
+]
+---
+
+<section id="kontakt" class="relative py-24 lg:py-32 bg-brand-teal-dark overflow-hidden">
+  <!-- Diagonal accent -->
+  <div class="absolute bottom-0 left-0 w-full h-1/3 bg-brand-teal transform -skew-y-3 origin-bottom-left" aria-hidden="true"></div>
+
+  <div class="container-wide relative z-10">
+    <div class="grid lg:grid-cols-2 gap-16 items-start">
+      <!-- Left: Contact Info -->
+      <div class="space-y-8">
+        <div class="space-y-4">
+          <span class="section-label text-white/40 before:bg-brand-yellow">Kontakt</span>
+          <h2 class="font-display text-5xl lg:text-6xl xl:text-7xl text-white">
+            Masz<br/>
+            <span class="text-brand-yellow">pytania?</span>
+          </h2>
+        </div>
+
+        <p class="text-white/70 text-lg leading-relaxed max-w-lg">
+          Chętnie odpowiemy na wszystkie pytania dotyczące biegu, rejestracji czy możliwości partnerstwa.
+        </p>
+
+        <!-- Contact details -->
+        <div class="space-y-6">
+          <div class="flex items-start gap-4">
+            <div class="flex-shrink-0 w-12 h-12 bg-brand-yellow flex items-center justify-center">
+              <svg class="w-6 h-6 text-ink" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              </svg>
+            </div>
+            <div>
+              <div class="text-white/50 text-xs font-headline uppercase tracking-wider mb-1">Email</div>
+              <a href="mailto:marcinszalek1@gmail.com" class="text-white hover:text-brand-yellow transition-colors font-body text-lg">
+                marcinszalek1@gmail.com
+              </a>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-4">
+            <div class="flex-shrink-0 w-12 h-12 bg-brand-yellow flex items-center justify-center">
+              <svg class="w-6 h-6 text-ink" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+              </svg>
+            </div>
+            <div>
+              <div class="text-white/50 text-xs font-headline uppercase tracking-wider mb-1">Telefon</div>
+              <a href="tel:+48506444224" class="text-white hover:text-brand-yellow transition-colors font-body text-lg">
+                +48 506 444 224
+              </a>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-4">
+            <div class="flex-shrink-0 w-12 h-12 bg-brand-yellow flex items-center justify-center">
+              <svg class="w-6 h-6 text-ink" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+            </div>
+            <div>
+              <div class="text-white/50 text-xs font-headline uppercase tracking-wider mb-1">Organizator</div>
+              <div class="text-white font-body">
+                Parafia Najświętszej Eucharystii<br/>
+                <span class="text-white/60">Łódź - Retkinia</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Social Links -->
+        <div class="pt-8 border-t border-white/10">
+          <div class="text-white/50 text-xs font-headline uppercase tracking-wider mb-4">Śledź nas</div>
+          <div class="flex gap-4">
+            {socialLinks.map(social => (
+              <a
+                href={social.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="w-12 h-12 bg-white/10 hover:bg-brand-yellow flex items-center justify-center transition-colors group"
+                aria-label={social.name}
+              >
+                <svg class="w-5 h-5 text-white group-hover:text-ink transition-colors" fill="currentColor" viewBox="0 0 24 24">
+                  <path d={social.icon} />
+                </svg>
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Registration CTA / Quick Links -->
+      <div id="zapisz-sie" class="bg-white p-8 lg:p-12 shadow-2xl">
+        <div class="text-center space-y-6">
+          <div class="inline-flex items-center justify-center w-20 h-20 bg-brand-teal rounded-full">
+            <span class="font-display text-4xl text-white">5</span>
+          </div>
+
+          <div>
+            <h3 class="font-display text-3xl lg:text-4xl text-ink">
+              Dołącz do nas!
+            </h3>
+            <p class="text-ink-muted mt-2">
+              III Edycja Retkińskiej Piątki<br/>
+              20 września 2026
+            </p>
+          </div>
+
+          <div class="space-y-4">
+            <a
+              href="#"
+              class="btn-primary w-full justify-center text-lg py-4"
+            >
+              <span>Zapisz się na bieg</span>
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+              </svg>
+            </a>
+
+            <p class="text-ink-muted text-sm">
+              Rejestracja prowadzona jest przez zewnętrzny serwis
+            </p>
+          </div>
+
+          <div class="pt-6 border-t border-ink/10">
+            <div class="grid grid-cols-2 gap-4 text-sm">
+              <a href="#" class="text-brand-teal hover:text-brand-teal-dark transition-colors font-headline uppercase tracking-wide">
+                Regulamin
+              </a>
+              <a href="#" class="text-brand-teal hover:text-brand-teal-dark transition-colors font-headline uppercase tracking-wide">
+                Wyniki 2025
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

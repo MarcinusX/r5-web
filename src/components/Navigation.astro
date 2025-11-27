@@ -1,0 +1,165 @@
+---
+const navLinks = [
+  { href: '#o-biegu', label: 'O biegu' },
+  { href: '#trasa', label: 'Trasa' },
+  { href: '#harmonogram', label: 'Harmonogram' },
+  { href: '#sponsorzy', label: 'Partnerzy' },
+  { href: '#poprzednie-edycje', label: 'Edycje' },
+  { href: '#kontakt', label: 'Kontakt' },
+]
+---
+
+<nav class="fixed top-0 left-0 right-0 z-50 transition-all duration-300" id="main-nav">
+  <div class="container-wide">
+    <div class="flex items-center justify-between h-20 lg:h-24">
+      <!-- Logo -->
+      <a href="/" class="relative z-10 flex items-center gap-3 group">
+        <div class="w-12 h-12 lg:w-14 lg:h-14 overflow-hidden">
+          <img
+            src="/images/logo.png"
+            alt="Retkińska Piątka"
+            class="w-full h-full object-contain transition-transform duration-300 group-hover:scale-105"
+          />
+        </div>
+        <div class="hidden sm:block">
+          <span class="font-display text-lg lg:text-xl text-white nav-logo-text">Retkińska</span>
+          <span class="font-display text-lg lg:text-xl text-brand-yellow nav-logo-text">5</span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation -->
+      <div class="hidden lg:flex items-center gap-8">
+        {navLinks.map(link => (
+          <a
+            href={link.href}
+            class="font-headline text-sm uppercase tracking-wider text-white/80 hover:text-brand-yellow transition-colors duration-200 nav-link"
+          >
+            {link.label}
+          </a>
+        ))}
+        <a
+          href="#zapisz-sie"
+          class="btn-primary text-sm py-3 px-6"
+        >
+          Zapisz się
+        </a>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button
+        class="lg:hidden relative z-10 w-10 h-10 flex flex-col items-center justify-center gap-1.5"
+        id="mobile-menu-btn"
+        aria-label="Menu"
+      >
+        <span class="w-6 h-0.5 bg-white transition-all duration-300 menu-line-1"></span>
+        <span class="w-6 h-0.5 bg-white transition-all duration-300 menu-line-2"></span>
+        <span class="w-4 h-0.5 bg-white transition-all duration-300 menu-line-3 ml-auto"></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div
+    class="fixed inset-0 bg-brand-teal-dark/98 backdrop-blur-sm lg:hidden opacity-0 pointer-events-none transition-opacity duration-300"
+    id="mobile-menu"
+  >
+    <div class="flex flex-col items-center justify-center h-full gap-8">
+      {navLinks.map((link, index) => (
+        <a
+          href={link.href}
+          class="font-display text-3xl text-white hover:text-brand-yellow transition-colors mobile-nav-link"
+          style={`transition-delay: ${index * 50}ms`}
+        >
+          {link.label}
+        </a>
+      ))}
+      <a
+        href="#zapisz-sie"
+        class="btn-primary mt-4"
+      >
+        Zapisz się
+      </a>
+    </div>
+  </div>
+</nav>
+
+<style>
+  nav {
+    background: linear-gradient(to bottom, rgba(30, 69, 82, 0.95), transparent);
+  }
+
+  nav.scrolled {
+    background: rgba(30, 69, 82, 0.98);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15);
+  }
+
+  nav.scrolled .nav-link {
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  #mobile-menu.active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  #mobile-menu-btn.active .menu-line-1 {
+    transform: rotate(45deg) translate(4px, 4px);
+  }
+
+  #mobile-menu-btn.active .menu-line-2 {
+    opacity: 0;
+  }
+
+  #mobile-menu-btn.active .menu-line-3 {
+    width: 1.5rem;
+    transform: rotate(-45deg) translate(4px, -4px);
+  }
+
+  .mobile-nav-link {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  #mobile-menu.active .mobile-nav-link {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+
+<script>
+  const nav = document.getElementById('main-nav')
+  const mobileMenuBtn = document.getElementById('mobile-menu-btn')
+  const mobileMenu = document.getElementById('mobile-menu')
+  const mobileNavLinks = document.querySelectorAll('.mobile-nav-link')
+
+  // Scroll behavior
+  let lastScroll = 0
+  window.addEventListener('scroll', () => {
+    const currentScroll = window.scrollY
+
+    if (currentScroll > 100) {
+      nav?.classList.add('scrolled')
+    } else {
+      nav?.classList.remove('scrolled')
+    }
+
+    lastScroll = currentScroll
+  })
+
+  // Mobile menu toggle
+  mobileMenuBtn?.addEventListener('click', () => {
+    mobileMenuBtn.classList.toggle('active')
+    mobileMenu?.classList.toggle('active')
+    document.body.style.overflow = mobileMenu?.classList.contains('active') ? 'hidden' : ''
+  })
+
+  // Close mobile menu on link click
+  mobileNavLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenuBtn?.classList.remove('active')
+      mobileMenu?.classList.remove('active')
+      document.body.style.overflow = ''
+    })
+  })
+</script>

@@ -1,0 +1,131 @@
+---
+const features = [
+  {
+    icon: '5',
+    title: '5 kilometrów',
+    description: 'Trasa certyfikowana przez PZLA, idealna zarówno dla początkujących jak i zaawansowanych biegaczy.'
+  },
+  {
+    icon: '♥',
+    title: '100% charytatywnie',
+    description: 'Wszystkie zebrane środki przekazujemy na wsparcie wybranej fundacji. Każdy krok ma znaczenie.'
+  },
+  {
+    icon: '★',
+    title: 'Atest PZLA',
+    description: 'Profesjonalna organizacja zgodna z najwyższymi standardami Polskiego Związku Lekkiej Atletyki.'
+  },
+  {
+    icon: '⚑',
+    title: 'Lokalna społeczność',
+    description: 'Bieg integrujący mieszkańców Retkini i całej Łodzi wokół wspólnego, dobrego celu.'
+  }
+]
+---
+
+<section id="o-biegu" class="relative py-24 lg:py-32 bg-paper overflow-hidden">
+  <!-- Decorative 5 watermark -->
+  <div class="absolute -left-20 top-1/2 -translate-y-1/2 font-display text-[30rem] lg:text-[50rem] text-brand-teal/[0.03] leading-none pointer-events-none select-none" aria-hidden="true">
+    5
+  </div>
+
+  <div class="container-wide relative z-10">
+    <div class="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+      <!-- Left: Content -->
+      <div class="space-y-8">
+        <div class="space-y-4">
+          <span class="section-label">O biegu</span>
+          <h2 class="font-display text-5xl lg:text-6xl xl:text-7xl text-ink">
+            Więcej niż<br/>
+            <span class="text-brand-teal">tylko bieg</span>
+          </h2>
+        </div>
+
+        <div class="space-y-4 text-ink-muted text-lg leading-relaxed">
+          <p>
+            <strong class="text-ink">Retkińska Piątka</strong> to wyjątkowe wydarzenie łączące sport z pomocą potrzebującym.
+            Bieg organizowany jest przez <strong class="text-ink">Parafię Najświętszej Eucharystii w Łodzi</strong>
+            i odbywa się ulicami dzielnicy Retkinia.
+          </p>
+          <p>
+            Nasza misja jest prosta: każdy kilometr, każdy uczestnik, każda złotówka przybliża nas do
+            realnej pomocy. Biegamy nie dla medali, ale dla tych, którzy potrzebują naszego wsparcia.
+          </p>
+        </div>
+
+        <!-- Feature Grid -->
+        <div class="grid sm:grid-cols-2 gap-6 pt-6">
+          {features.map((feature, index) => (
+            <div class="group flex gap-4 p-4 bg-white rounded-none border-l-4 border-brand-yellow hover:shadow-lg transition-all duration-300">
+              <div class="flex-shrink-0 w-12 h-12 flex items-center justify-center bg-brand-teal text-white font-display text-2xl">
+                {feature.icon}
+              </div>
+              <div>
+                <h3 class="font-headline text-lg text-ink group-hover:text-brand-teal transition-colors">
+                  {feature.title}
+                </h3>
+                <p class="text-sm text-ink-muted mt-1">
+                  {feature.description}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Right: Image/Visual -->
+      <div class="relative">
+        <!-- Main visual container -->
+        <div class="relative aspect-[4/5] bg-brand-teal overflow-hidden">
+          <!-- Placeholder for photo -->
+          <div class="absolute inset-0 flex items-center justify-center">
+            <div class="text-center p-8">
+              <div class="font-display text-8xl text-white/20 mb-4">5</div>
+              <p class="text-white/40 font-body text-sm">
+                Miejsce na zdjęcie z biegu
+              </p>
+            </div>
+          </div>
+
+          <!-- Corner accent -->
+          <div class="absolute top-0 right-0 w-1/3 h-1/3 bg-brand-yellow/20"></div>
+
+          <!-- Stats overlay -->
+          <div class="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-brand-teal-dark/90 to-transparent">
+            <div class="grid grid-cols-3 gap-4 text-center">
+              <div>
+                <div class="font-display text-4xl text-white">200+</div>
+                <div class="text-white/60 text-xs font-headline uppercase">2024</div>
+              </div>
+              <div>
+                <div class="font-display text-4xl text-white">300+</div>
+                <div class="text-white/60 text-xs font-headline uppercase">2025</div>
+              </div>
+              <div>
+                <div class="font-display text-4xl text-brand-yellow">?</div>
+                <div class="text-white/60 text-xs font-headline uppercase">2026</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Floating card -->
+        <div class="absolute -bottom-6 -left-6 lg:-left-12 bg-white p-6 shadow-xl max-w-[280px]">
+          <div class="flex items-start gap-4">
+            <div class="flex-shrink-0 w-12 h-12 bg-charity/10 rounded-full flex items-center justify-center">
+              <svg class="w-6 h-6 text-charity" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+              </svg>
+            </div>
+            <div>
+              <div class="font-headline text-charity text-sm uppercase tracking-wide">Cel 2026</div>
+              <div class="font-body text-ink mt-1 text-sm">
+                Wkrótce ogłosimy fundację, którą wspieramy w tym roku!
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

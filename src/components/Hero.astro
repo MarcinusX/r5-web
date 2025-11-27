@@ -1,0 +1,171 @@
+---
+// Event data - update for each edition
+const eventDate = new Date('2026-09-20T10:00:00')
+const eventDateFormatted = '20.09.2026'
+---
+
+<section class="relative min-h-screen flex items-center overflow-hidden bg-brand-teal-dark">
+  <!-- Large decorative 5 -->
+  <div class="absolute -right-20 top-1/2 -translate-y-1/2 font-display text-[40rem] lg:text-[60rem] text-white/[0.03] leading-none pointer-events-none select-none" aria-hidden="true">
+    5
+  </div>
+
+  <!-- Diagonal accent stripe -->
+  <div class="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
+    <div class="absolute -right-1/4 top-0 w-1/2 h-full bg-brand-yellow/10 transform skew-x-12"></div>
+  </div>
+
+  <!-- Content -->
+  <div class="container-wide relative z-10 pt-32 pb-20 lg:pt-40 lg:pb-32">
+    <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+      <!-- Left: Text Content -->
+      <div class="space-y-8">
+        <!-- Edition Badge -->
+        <div class="inline-flex items-center gap-3 opacity-0 animate-fade-in-up">
+          <span class="px-4 py-1.5 bg-brand-yellow text-ink font-headline text-sm uppercase tracking-wider">
+            III Edycja
+          </span>
+          <span class="text-white/60 font-body text-sm">Atest PZLA</span>
+        </div>
+
+        <!-- Main Headline -->
+        <div class="space-y-2 opacity-0 animate-fade-in-up delay-100">
+          <h1 class="font-display text-6xl sm:text-7xl lg:text-8xl xl:text-9xl text-white leading-none">
+            Retkińska
+          </h1>
+          <div class="flex items-baseline gap-4">
+            <span class="font-display text-8xl sm:text-9xl lg:text-[10rem] xl:text-[12rem] text-brand-yellow leading-none">
+              5
+            </span>
+            <span class="font-display text-4xl sm:text-5xl lg:text-6xl text-white/80 leading-none">
+              KM
+            </span>
+          </div>
+        </div>
+
+        <!-- Subheadline -->
+        <p class="text-xl lg:text-2xl text-white/70 font-body font-light max-w-lg opacity-0 animate-fade-in-up delay-200">
+          Charytatywny bieg ulicami Retkini. Każdy krok przybliża nas do celu.
+        </p>
+
+        <!-- CTA Buttons -->
+        <div class="flex flex-wrap gap-4 opacity-0 animate-fade-in-up delay-300">
+          <a href="#zapisz-sie" class="btn-primary">
+            <span>Zapisz się</span>
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </a>
+          <a href="#o-biegu" class="btn-secondary">
+            Dowiedz się więcej
+          </a>
+        </div>
+
+        <!-- Quick Stats -->
+        <div class="grid grid-cols-3 gap-6 pt-8 border-t border-white/10 opacity-0 animate-fade-in-up delay-400">
+          <div>
+            <div class="font-display text-3xl lg:text-4xl text-brand-yellow">5</div>
+            <div class="text-white/50 text-sm font-body mt-1">kilometrów</div>
+          </div>
+          <div>
+            <div class="font-display text-3xl lg:text-4xl text-brand-yellow">400+</div>
+            <div class="text-white/50 text-sm font-body mt-1">uczestników</div>
+          </div>
+          <div>
+            <div class="font-display text-3xl lg:text-4xl text-brand-yellow">100%</div>
+            <div class="text-white/50 text-sm font-body mt-1">na cele charytatywne</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Date & Countdown -->
+      <div class="relative opacity-0 animate-scale-in delay-200">
+        <!-- Date Card -->
+        <div class="relative bg-white/5 backdrop-blur-sm border border-white/10 p-8 lg:p-12">
+          <!-- Corner accents -->
+          <div class="absolute top-0 left-0 w-16 h-16 border-t-4 border-l-4 border-brand-yellow"></div>
+          <div class="absolute bottom-0 right-0 w-16 h-16 border-b-4 border-r-4 border-brand-yellow"></div>
+
+          <div class="text-center space-y-6">
+            <div class="text-white/50 font-headline uppercase tracking-widest text-sm">Data biegu</div>
+
+            <!-- Big Date -->
+            <div class="font-display text-5xl lg:text-7xl text-white">
+              {eventDateFormatted}
+            </div>
+
+            <div class="text-brand-yellow font-headline text-lg uppercase tracking-wide">
+              Łódź - Retkinia
+            </div>
+
+            <!-- Countdown -->
+            <div class="pt-6 border-t border-white/10">
+              <div class="text-white/50 font-headline uppercase tracking-widest text-xs mb-4">Do startu pozostało</div>
+              <div class="grid grid-cols-4 gap-4" id="countdown">
+                <div class="text-center">
+                  <div class="font-display text-3xl lg:text-4xl text-white" id="days">---</div>
+                  <div class="text-white/40 text-xs uppercase">dni</div>
+                </div>
+                <div class="text-center">
+                  <div class="font-display text-3xl lg:text-4xl text-white" id="hours">--</div>
+                  <div class="text-white/40 text-xs uppercase">godz</div>
+                </div>
+                <div class="text-center">
+                  <div class="font-display text-3xl lg:text-4xl text-white" id="minutes">--</div>
+                  <div class="text-white/40 text-xs uppercase">min</div>
+                </div>
+                <div class="text-center">
+                  <div class="font-display text-3xl lg:text-4xl text-white" id="seconds">--</div>
+                  <div class="text-white/40 text-xs uppercase">sek</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Floating badge - Atest PZLA -->
+        <div class="absolute -top-4 -right-4 lg:-top-6 lg:-right-6 bg-brand-yellow text-ink px-4 py-2 font-headline text-sm uppercase tracking-wide transform rotate-3 shadow-lg">
+          Atest PZLA
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/40 opacity-0 animate-fade-in delay-600">
+    <span class="text-xs uppercase tracking-widest font-headline">Przewiń</span>
+    <div class="w-px h-12 bg-gradient-to-b from-white/40 to-transparent animate-pulse"></div>
+  </div>
+</section>
+
+<script define:vars={{ eventDate: eventDate.toISOString() }}>
+  const targetDate = new Date(eventDate)
+
+  function updateCountdown() {
+    const now = new Date()
+    const diff = targetDate.getTime() - now.getTime()
+
+    if (diff <= 0) {
+      document.getElementById('countdown')?.classList.add('hidden')
+      return
+    }
+
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24))
+    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
+    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))
+    const seconds = Math.floor((diff % (1000 * 60)) / 1000)
+
+    const daysEl = document.getElementById('days')
+    const hoursEl = document.getElementById('hours')
+    const minutesEl = document.getElementById('minutes')
+    const secondsEl = document.getElementById('seconds')
+
+    if (daysEl) daysEl.textContent = days.toString()
+    if (hoursEl) hoursEl.textContent = hours.toString().padStart(2, '0')
+    if (minutesEl) minutesEl.textContent = minutes.toString().padStart(2, '0')
+    if (secondsEl) secondsEl.textContent = seconds.toString().padStart(2, '0')
+  }
+
+  updateCountdown()
+  setInterval(updateCountdown, 1000)
+</script>
