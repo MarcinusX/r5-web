@@ -9,10 +9,19 @@ Website for "Retkińska Piątka" - a charity 5km run in Łódź, Poland. The eve
 ### Event Details
 - **Distance**: 5 km
 - **Location**: Retkinia, Łódź, Poland
-- **Next edition**: September 20, 2026 (charity cause TBD)
+- **Next edition**: September 20, 2026 (supporting Fundacja Kolorowy Świat)
 - **Previous editions**: 2024 (Fundacja Gajusz - rehabilitation lift), 2025 (Fundacja Rampa)
 - **Certification**: PZLA (Polski Związek Lekkiej Atletyki)
 - **Patronage**: Mayor of Łódź (Prezydent Miasta Łodzi)
+
+### Charity Beneficiary 2026: Fundacja Kolorowy Świat
+- **Website**: https://www.kolorowyswiat.org/pl/
+- **Mission**: Improving quality of life for children with disabilities since 2003
+- **Key programs**:
+  - Otulinka (center for premature infants and children with neurodevelopmental disorders)
+  - Kolorowe Przedszkole and Kolorowa Szkoła (serving 100+ children daily)
+  - Rehabilitation services (NFZ-funded and paid)
+- **Focus**: Children with cerebral palsy, premature infants, and families needing therapeutic support
 
 ### Tech Stack
 - **Framework**: Astro (static site)
@@ -82,6 +91,7 @@ All photos must include photographer attribution. Use this pattern:
 - Facebook fanpage: https://www.facebook.com/profile.php?id=61576316956069
 - Photos 2024: https://radiolodz.pl/bieg-charytatywny-na-rzecz-fundacji-gajusz-zdjecia,429813/
 - Fundacja Rampa: https://rampa.org.pl/
+- Fundacja Kolorowy Świat: https://www.kolorowyswiat.org/pl/
 
 ## GitHub Pages Deployment
 
