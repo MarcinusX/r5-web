@@ -1,4 +1,15 @@
 ---
+import PhotoSlider from './PhotoSlider.astro';
+
+const photos2025 = [
+  { src: '/2025/555915615_1410452524416612_4136718030728151101_n.jpg', alt: 'Biegacze Retkińskiej Piątki 2025', photographer: 'EKo Foto' },
+  { src: '/2025/556572935_24461685070183767_138188670356277265_n.jpg', alt: 'Atmosfera biegu Retkińska Piątka 2025', photographer: 'Piotr Drzewicki' },
+  { src: '/2025/557052807_24461683983517209_8870246271793826789_n.jpg', alt: 'Retkińska Piątka 2025', photographer: 'Piotr Drzewicki' },
+  { src: '/2025/dzieci.jpg', alt: 'Dzieci biorące udział w Retkińskiej Piątce 2025', photographer: 'EKo Foto' },
+  { src: '/2025/556090655_1095362906143663_3204512997630037629_n.jpg', alt: 'Meta Retkińskiej Piątki 2025', photographer: 'Kejti Grabz Foto' },
+  { src: '/2025/557600692_24461683956850545_4895900737268212242_n.jpg', alt: 'Medale Retkińskiej Piątki 2025', photographer: 'Piotr Drzewicki' },
+];
+
 const features = [
   {
     icon: '5',
@@ -75,36 +86,25 @@ const features = [
 
       <!-- Right: Image/Visual -->
       <div class="relative">
-        <!-- Main visual container -->
-        <div class="relative aspect-[4/5] bg-brand-teal overflow-hidden">
-          <!-- Placeholder for photo -->
-          <div class="absolute inset-0 flex items-center justify-center">
-            <div class="text-center p-8">
-              <div class="font-display text-8xl text-white/20 mb-4">5</div>
-              <p class="text-white/40 font-body text-sm">
-                Miejsce na zdjęcie z biegu
-              </p>
+        <!-- Main visual container with Photo Slider -->
+        <div class="relative aspect-[4/3] bg-brand-teal overflow-hidden">
+          <PhotoSlider photos={photos2025} />
+        </div>
+
+        <!-- Stats bar below photo -->
+        <div class="bg-brand-teal p-4">
+          <div class="grid grid-cols-3 gap-4 text-center">
+            <div>
+              <div class="font-display text-3xl text-white">200+</div>
+              <div class="text-white/60 text-xs font-headline uppercase">2024</div>
             </div>
-          </div>
-
-          <!-- Corner accent -->
-          <div class="absolute top-0 right-0 w-1/3 h-1/3 bg-brand-yellow/20"></div>
-
-          <!-- Stats overlay -->
-          <div class="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-brand-teal-dark/90 to-transparent">
-            <div class="grid grid-cols-3 gap-4 text-center">
-              <div>
-                <div class="font-display text-4xl text-white">200+</div>
-                <div class="text-white/60 text-xs font-headline uppercase">2024</div>
-              </div>
-              <div>
-                <div class="font-display text-4xl text-white">300+</div>
-                <div class="text-white/60 text-xs font-headline uppercase">2025</div>
-              </div>
-              <div>
-                <div class="font-display text-4xl text-brand-yellow">?</div>
-                <div class="text-white/60 text-xs font-headline uppercase">2026</div>
-              </div>
+            <div>
+              <div class="font-display text-3xl text-white">300+</div>
+              <div class="text-white/60 text-xs font-headline uppercase">2025</div>
+            </div>
+            <div>
+              <div class="font-display text-3xl text-brand-yellow">?</div>
+              <div class="text-white/60 text-xs font-headline uppercase">2026</div>
             </div>
           </div>
         </div>
