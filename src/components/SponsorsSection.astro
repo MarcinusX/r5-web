@@ -1,28 +1,4 @@
 ---
-// Sponsor tiers - będą uzupełniane o prawdziwe loga
-const sponsorTiers = [
-  {
-    name: 'Partner Główny',
-    sponsors: [
-      { name: 'Twoja firma?', placeholder: true },
-    ]
-  },
-  {
-    name: 'Partnerzy',
-    sponsors: [
-      { name: 'Partner 1', placeholder: true },
-      { name: 'Partner 2', placeholder: true },
-      { name: 'Partner 3', placeholder: true },
-    ]
-  },
-  {
-    name: 'Patronat',
-    sponsors: [
-      { name: 'Prezydent Miasta Łodzi', placeholder: true },
-      { name: 'PZLA', placeholder: true },
-    ]
-  }
-]
 ---
 
 <section id="sponsorzy" class="relative py-24 lg:py-32 bg-paper overflow-hidden">
@@ -42,45 +18,8 @@ const sponsorTiers = [
       </p>
     </div>
 
-    <!-- Sponsor Tiers -->
-    <div class="space-y-16">
-      {sponsorTiers.map((tier, tierIndex) => (
-        <div class="text-center">
-          <h3 class="font-headline text-sm uppercase tracking-widest text-ink-muted mb-8">
-            {tier.name}
-          </h3>
-
-          <div class={`flex flex-wrap justify-center items-center gap-8 ${tierIndex === 0 ? 'gap-12' : ''}`}>
-            {tier.sponsors.map(sponsor => (
-              <div
-                class={`
-                  ${tierIndex === 0 ? 'w-64 h-32' : 'w-40 h-20'}
-                  bg-white border-2 border-dashed border-ink/10 flex items-center justify-center
-                  hover:border-brand-teal hover:shadow-lg transition-all duration-300 group
-                `}
-              >
-                {sponsor.placeholder ? (
-                  <div class="text-center px-4">
-                    <div class="text-ink/20 text-sm font-body group-hover:text-brand-teal transition-colors">
-                      {sponsor.name}
-                    </div>
-                  </div>
-                ) : (
-                  <img
-                    src={sponsor.logo}
-                    alt={sponsor.name}
-                    class="max-w-full max-h-full object-contain p-4 grayscale group-hover:grayscale-0 transition-all duration-300"
-                  />
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
-      ))}
-    </div>
-
     <!-- CTA for sponsors -->
-    <div class="mt-20 text-center">
+    <div class="text-center">
       <div class="inline-block bg-brand-teal/5 border border-brand-teal/20 p-8 lg:p-12 max-w-2xl">
         <h3 class="font-headline text-2xl text-ink mb-4">
           Chcesz zostać partnerem?
@@ -92,12 +31,6 @@ const sponsorTiers = [
         <div class="flex flex-wrap justify-center gap-4">
           <a href="#kontakt" class="btn-primary">
             Skontaktuj się z nami
-          </a>
-          <a
-            href="#"
-            class="btn-secondary border-brand-teal text-brand-teal hover:bg-brand-teal hover:text-white"
-          >
-            Pobierz ofertę (PDF)
           </a>
         </div>
       </div>
