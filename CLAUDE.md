@@ -9,7 +9,7 @@ Website for "Retkińska Piątka" - a charity 5km run in Łódź, Poland. The eve
 ### Event Details
 - **Distance**: 5 km
 - **Location**: Retkinia, Łódź, Poland
-- **Next edition**: September 20, 2026 (supporting Fundacja Kolorowy Świat)
+- **Next edition**: September 13, 2026 (supporting Fundacja Kolorowy Świat)
 - **Previous editions**: 2024 (Fundacja Gajusz - rehabilitation lift), 2025 (Fundacja Rampa)
 - **Certification**: PZLA (Polski Związek Lekkiej Atletyki)
 - **Patronage**: Mayor of Łódź (Prezydent Miasta Łodzi)
