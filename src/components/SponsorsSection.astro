@@ -1,9 +1,21 @@
 ---
+const sponsors = [
+  {
+    name: "Pawęta - mięsa dojrzewające",
+    logo: "/sponsors/paweta.svg",
+    url: "https://www.paweta.com/",
+  },
+];
 ---
 
 <section id="sponsorzy" class="relative py-24 lg:py-32 bg-paper overflow-hidden">
   <!-- Decorative element -->
   <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-brand-teal via-brand-yellow to-brand-teal"></div>
+
+  <!-- Subtle diagonal background accent -->
+  <div class="absolute inset-0 overflow-hidden pointer-events-none">
+    <div class="absolute -top-1/2 -right-1/4 w-[80%] h-[200%] bg-brand-teal/[0.02] rotate-12 origin-center"></div>
+  </div>
 
   <div class="container-wide relative z-10">
     <!-- Header -->
@@ -16,6 +28,29 @@
       <p class="text-ink-muted text-lg mt-6">
         Dziękujemy wszystkim partnerom, którzy pomagają nam organizować to wydarzenie.
       </p>
+    </div>
+
+    <!-- Sponsors grid -->
+    <div class="flex flex-wrap justify-center gap-8 lg:gap-12 mb-20">
+      {sponsors.map((sponsor) => (
+        <a
+          href={sponsor.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="sponsor-card group"
+          title={sponsor.name}
+        >
+          <div class="sponsor-logo-wrap">
+            <img
+              src={sponsor.logo}
+              alt={sponsor.name}
+              class="sponsor-logo"
+              loading="lazy"
+            />
+          </div>
+          <span class="sponsor-name">{sponsor.name}</span>
+        </a>
+      ))}
     </div>
 
     <!-- CTA for sponsors -->
@@ -37,3 +72,63 @@
     </div>
   </div>
 </section>
+
+<style>
+  .sponsor-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    text-decoration: none;
+    transition: transform 0.3s ease;
+  }
+
+  .sponsor-card:hover {
+    transform: translateY(-4px);
+  }
+
+  .sponsor-logo-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 220px;
+    height: 130px;
+    padding: 1.5rem;
+    background: var(--color-brand-teal-dark);
+    border: 1px solid rgba(42, 90, 106, 0.2);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
+  }
+
+  .sponsor-card:hover .sponsor-logo-wrap {
+    box-shadow: 0 8px 32px rgba(42, 90, 106, 0.18);
+    border-color: var(--color-brand-yellow);
+  }
+
+  .sponsor-logo {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    transition: opacity 0.3s ease;
+    opacity: 0.9;
+  }
+
+  .sponsor-card:hover .sponsor-logo {
+    opacity: 1;
+  }
+
+  .sponsor-name {
+    font-family: var(--font-headline);
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--color-ink-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    text-align: center;
+    transition: color 0.3s ease;
+  }
+
+  .sponsor-card:hover .sponsor-name {
+    color: var(--color-brand-teal);
+  }
+</style>
