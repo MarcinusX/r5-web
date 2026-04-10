@@ -1,4 +1,10 @@
 ---
+const mainPartner = {
+  name: "Pizzeria Kultowa",
+  logo: "/sponsors/pizzeria-kultowa.webp",
+  url: "https://pizzeriakultowa.pl/",
+};
+
 const sponsors = [
   {
     name: "Pawęta - mięsa dojrzewające",
@@ -18,19 +24,33 @@ const sponsors = [
   </div>
 
   <div class="container-wide relative z-10">
-    <!-- Header -->
-    <div class="text-center max-w-2xl mx-auto mb-16">
-      <span class="section-label justify-center">Partnerzy</span>
-      <h2 class="font-display text-5xl lg:text-6xl xl:text-7xl text-ink mt-4">
-        Wspierają<br/>
-        <span class="text-brand-teal">Retkińską Piątkę</span>
-      </h2>
-      <p class="text-ink-muted text-lg mt-6">
-        Dziękujemy wszystkim partnerom, którzy pomagają nam organizować to wydarzenie.
-      </p>
+    <!-- Main partner -->
+    <div class="text-center mb-20">
+      <h2 class="section-heading text-brand-teal">Partner główny</h2>
+      <div class="flex justify-center mt-10">
+        <a
+          href={mainPartner.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="sponsor-card group"
+          title={mainPartner.name}
+        >
+          <div class="main-partner-logo-wrap">
+            <img
+              src={mainPartner.logo}
+              alt={mainPartner.name}
+              class="sponsor-logo"
+              loading="lazy"
+            />
+          </div>
+        </a>
+      </div>
     </div>
 
     <!-- Sponsors grid -->
+    <div class="text-center mb-10">
+      <h3 class="section-heading section-heading--sm text-ink">Partnerzy</h3>
+    </div>
     <div class="flex flex-wrap justify-center gap-8 lg:gap-12 mb-20">
       {sponsors.map((sponsor) => (
         <a
@@ -48,7 +68,6 @@ const sponsors = [
               loading="lazy"
             />
           </div>
-          <span class="sponsor-name">{sponsor.name}</span>
         </a>
       ))}
     </div>
@@ -74,11 +93,23 @@ const sponsors = [
 </section>
 
 <style>
+  .section-heading {
+    font-family: var(--font-headline);
+    font-size: 2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+  }
+
+  .section-heading--sm {
+    font-size: 1.25rem;
+    letter-spacing: 0.1em;
+  }
+
   .sponsor-card {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1rem;
     text-decoration: none;
     transition: transform 0.3s ease;
   }
@@ -87,22 +118,29 @@ const sponsors = [
     transform: translateY(-4px);
   }
 
+  .main-partner-logo-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 600px;
+    max-width: 90vw;
+    padding: 1rem;
+  }
+
   .sponsor-logo-wrap {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 220px;
-    height: 130px;
+    width: 240px;
+    height: 120px;
     padding: 1.5rem;
     background: var(--color-brand-teal-dark);
-    border: 1px solid rgba(42, 90, 106, 0.2);
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
-    transition: box-shadow 0.3s ease, border-color 0.3s ease;
+    border-radius: 8px;
+    transition: box-shadow 0.3s ease;
   }
 
   .sponsor-card:hover .sponsor-logo-wrap {
-    box-shadow: 0 8px 32px rgba(42, 90, 106, 0.18);
-    border-color: var(--color-brand-yellow);
+    box-shadow: 0 8px 32px rgba(42, 90, 106, 0.25);
   }
 
   .sponsor-logo {
@@ -115,20 +153,5 @@ const sponsors = [
 
   .sponsor-card:hover .sponsor-logo {
     opacity: 1;
-  }
-
-  .sponsor-name {
-    font-family: var(--font-headline);
-    font-size: 0.85rem;
-    font-weight: 500;
-    color: var(--color-ink-muted);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    text-align: center;
-    transition: color 0.3s ease;
-  }
-
-  .sponsor-card:hover .sponsor-name {
-    color: var(--color-brand-teal);
   }
 </style>
