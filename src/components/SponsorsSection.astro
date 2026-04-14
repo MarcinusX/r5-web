@@ -11,7 +11,16 @@ const sponsors = [
     logo: "/sponsors/paweta.svg",
     url: "https://www.paweta.com/",
   },
+  {
+    name: "Podkawa",
+    logo: "/sponsors/podkawa.png",
+    url: "https://podkawa.pl/",
+    scale: 1.6,
+    hidden: true,
+  },
 ];
+
+const visibleSponsors = sponsors.filter((s) => !s.hidden);
 ---
 
 <section id="sponsorzy" class="relative py-24 lg:py-32 bg-paper overflow-hidden">
@@ -52,7 +61,7 @@ const sponsors = [
       <h3 class="section-heading section-heading--sm text-ink">Partnerzy</h3>
     </div>
     <div class="flex flex-wrap justify-center gap-8 lg:gap-12 mb-20">
-      {sponsors.map((sponsor) => (
+      {visibleSponsors.map((sponsor) => (
         <a
           href={sponsor.url}
           target="_blank"
@@ -66,6 +75,7 @@ const sponsors = [
               alt={sponsor.name}
               class="sponsor-logo"
               loading="lazy"
+              style={sponsor.scale ? `transform: scale(${sponsor.scale});` : undefined}
             />
           </div>
         </a>
@@ -134,13 +144,6 @@ const sponsors = [
     width: 240px;
     height: 120px;
     padding: 1.5rem;
-    background: var(--color-brand-teal-dark);
-    border-radius: 8px;
-    transition: box-shadow 0.3s ease;
-  }
-
-  .sponsor-card:hover .sponsor-logo-wrap {
-    box-shadow: 0 8px 32px rgba(42, 90, 106, 0.25);
   }
 
   .sponsor-logo {
