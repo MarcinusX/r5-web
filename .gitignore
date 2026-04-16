@@ -22,3 +22,16 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# Source video files (too large for git)
+public/*.mov
+public/ffmpeg2pass-*.log
+
+# Experimental/unused video variants
+public/trasa-1280-2pass.webm
+public/trasa-1280-crf32.mp4
+public/trasa-1600.mp4
+public/trasa-960.mp4
+public/trasa-animowana.mp4
+public/trasa-animowana.webm
+public/nagranie-960.mp4

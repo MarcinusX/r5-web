@@ -18,20 +18,49 @@ const routeHighlights = [
     <div class="grid lg:grid-cols-2 gap-16 items-center">
       <!-- Left: Map -->
       <div class="relative order-2 lg:order-1">
-        <div class="aspect-square bg-white/5 backdrop-blur-sm border border-white/10 p-4">
-          <a href="https://maps.app.goo.gl/qEG9MzSA4WU5NPgm8" target="_blank" rel="noopener noreferrer" class="block">
+        <div class="relative aspect-square bg-white/5 backdrop-blur-sm border border-white/10 p-4">
+          <button
+            type="button"
+            data-route-video-open
+            class="route-map-trigger group relative block w-full h-full overflow-hidden cursor-pointer"
+            aria-label="Odtwórz film z trasą biegu"
+          >
             <img
               src={`${base}images/route-map.png`}
               alt="Mapa trasy biegu Retkińska Piątka - 5km przez Retkini"
-              class="w-full h-full object-cover hover:opacity-90 transition-opacity"
+              class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
             />
-          </a>
+
+            <!-- Darkening overlay on hover -->
+            <div class="absolute inset-0 bg-brand-teal-dark/0 group-hover:bg-brand-teal-dark/30 transition-colors duration-300"></div>
+
+            <!-- Play CTA -->
+            <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+              <div class="route-play-cta relative flex items-stretch shadow-[0_12px_40px_rgba(0,0,0,0.35)]">
+                <!-- Pulsing rings -->
+                <span class="absolute inset-0 border-2 border-brand-yellow/60 route-pulse-ring" aria-hidden="true"></span>
+                <span class="absolute inset-0 border-2 border-brand-yellow/40 route-pulse-ring route-pulse-ring-delayed" aria-hidden="true"></span>
+
+                <!-- Triangle play mark -->
+                <div class="relative flex items-center justify-center bg-brand-yellow px-5 py-4">
+                  <svg viewBox="0 0 16 18" class="w-5 h-6 fill-brand-teal-dark" aria-hidden="true">
+                    <polygon points="0,0 16,9 0,18" />
+                  </svg>
+                </div>
+                <!-- Label -->
+                <div class="relative flex flex-col justify-center bg-brand-teal-dark text-left px-5 py-3 border-t-2 border-b-2 border-r-2 border-brand-yellow">
+                  <span class="font-headline text-brand-yellow text-[10px] tracking-[0.25em] uppercase opacity-80">Film</span>
+                  <span class="font-display text-white text-xl tracking-wider leading-none">Trasa 5 km</span>
+                </div>
+              </div>
+            </div>
+          </button>
 
           <!-- Corner markers -->
-          <div class="absolute top-2 left-2 w-4 h-4 border-t-2 border-l-2 border-brand-yellow"></div>
-          <div class="absolute top-2 right-2 w-4 h-4 border-t-2 border-r-2 border-brand-yellow"></div>
-          <div class="absolute bottom-2 left-2 w-4 h-4 border-b-2 border-l-2 border-brand-yellow"></div>
-          <div class="absolute bottom-2 right-2 w-4 h-4 border-b-2 border-r-2 border-brand-yellow"></div>
+          <div class="absolute top-2 left-2 w-4 h-4 border-t-2 border-l-2 border-brand-yellow pointer-events-none"></div>
+          <div class="absolute top-2 right-2 w-4 h-4 border-t-2 border-r-2 border-brand-yellow pointer-events-none"></div>
+          <div class="absolute bottom-2 left-2 w-4 h-4 border-b-2 border-l-2 border-brand-yellow pointer-events-none"></div>
+          <div class="absolute bottom-2 right-2 w-4 h-4 border-b-2 border-r-2 border-brand-yellow pointer-events-none"></div>
         </div>
 
         <!-- PZLA Badge -->
@@ -91,4 +120,164 @@ const routeHighlights = [
       </div>
     </div>
   </div>
+
+  <!-- Video Modal -->
+  <div
+    id="route-video-modal"
+    class="route-modal fixed inset-0 z-[100] hidden items-center justify-center p-4 sm:p-8"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Film z trasą biegu"
+  >
+    <!-- Backdrop -->
+    <div class="route-modal-backdrop absolute inset-0 bg-black/90 backdrop-blur-md" data-route-video-close></div>
+
+    <!-- Modal content -->
+    <div class="route-modal-content relative w-full max-w-6xl">
+      <!-- Yellow accent header strip -->
+      <div class="flex items-center justify-between bg-brand-yellow px-4 py-2">
+        <div class="flex items-center gap-3">
+          <span class="inline-block w-2 h-2 bg-brand-teal-dark"></span>
+          <span class="font-headline text-brand-teal-dark text-xs sm:text-sm uppercase tracking-[0.25em]">
+            Retkińska Piątka · Trasa 5 km
+          </span>
+        </div>
+        <button
+          type="button"
+          data-route-video-close
+          class="route-close-btn font-headline text-brand-teal-dark text-xs uppercase tracking-[0.2em] flex items-center gap-2 hover:gap-3 transition-all"
+          aria-label="Zamknij film"
+        >
+          <span class="hidden sm:inline">Zamknij</span>
+          <svg viewBox="0 0 16 16" class="w-4 h-4 stroke-current" fill="none" stroke-width="2" aria-hidden="true">
+            <line x1="2" y1="2" x2="14" y2="14"/>
+            <line x1="14" y1="2" x2="2" y2="14"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Video container -->
+      <div class="relative bg-black">
+        <video
+          id="route-video-player"
+          class="w-full h-auto block"
+          controls
+          playsinline
+          preload="none"
+          poster={`${base}images/route-map.png`}
+        >
+          <source src={`${base}nagranie-1280.webm`} type="video/webm" />
+          <source src={`${base}nagranie-1280.mp4`} type="video/mp4" />
+          Twoja przeglądarka nie wspiera odtwarzania wideo.
+        </video>
+
+        <!-- Corner markers on video -->
+        <div class="absolute top-2 left-2 w-4 h-4 border-t-2 border-l-2 border-brand-yellow pointer-events-none"></div>
+        <div class="absolute top-2 right-2 w-4 h-4 border-t-2 border-r-2 border-brand-yellow pointer-events-none"></div>
+        <div class="absolute bottom-2 left-2 w-4 h-4 border-b-2 border-l-2 border-brand-yellow pointer-events-none"></div>
+        <div class="absolute bottom-2 right-2 w-4 h-4 border-b-2 border-r-2 border-brand-yellow pointer-events-none"></div>
+      </div>
+    </div>
+  </div>
 </section>
+
+<style>
+  /* Play button pulse rings */
+  @keyframes routePulseRing {
+    0% { transform: scale(1); opacity: 0.9; }
+    70% { transform: scale(1.35); opacity: 0; }
+    100% { transform: scale(1.35); opacity: 0; }
+  }
+
+  .route-pulse-ring {
+    animation: routePulseRing 2.4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  }
+
+  .route-pulse-ring-delayed {
+    animation-delay: 1.2s;
+  }
+
+  /* Slight lift of the CTA on hover of the whole trigger */
+  .route-map-trigger:hover .route-play-cta {
+    transform: translateY(-2px) scale(1.03);
+  }
+  .route-play-cta {
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Modal open state */
+  .route-modal.is-open {
+    display: flex;
+    animation: routeFadeIn 0.25s ease forwards;
+  }
+
+  .route-modal.is-open .route-modal-content {
+    animation: routeModalIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  @keyframes routeFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes routeModalIn {
+    from { opacity: 0; transform: translateY(20px) scale(0.98); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+
+  .route-close-btn:hover {
+    opacity: 0.75;
+  }
+
+  /* Lock scroll when modal open */
+  body.route-modal-open {
+    overflow: hidden;
+  }
+
+  /* Respect reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .route-pulse-ring,
+    .route-map-trigger img,
+    .route-play-cta,
+    .route-modal.is-open,
+    .route-modal.is-open .route-modal-content {
+      animation: none !important;
+      transition: none !important;
+    }
+  }
+</style>
+
+<script>
+  const modal = document.getElementById('route-video-modal');
+  const video = document.getElementById('route-video-player') as HTMLVideoElement | null;
+  const openTriggers = document.querySelectorAll('[data-route-video-open]');
+  const closeTriggers = document.querySelectorAll('[data-route-video-close]');
+
+  function openModal() {
+    if (!modal) return;
+    modal.classList.add('is-open');
+    document.body.classList.add('route-modal-open');
+    if (video) {
+      video.currentTime = 0;
+      video.play().catch(() => { /* user gesture may still be required */ });
+    }
+  }
+
+  function closeModal() {
+    if (!modal) return;
+    modal.classList.remove('is-open');
+    document.body.classList.remove('route-modal-open');
+    if (video) {
+      video.pause();
+    }
+  }
+
+  openTriggers.forEach(el => el.addEventListener('click', openModal));
+  closeTriggers.forEach(el => el.addEventListener('click', closeModal));
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal?.classList.contains('is-open')) {
+      closeModal();
+    }
+  });
+</script>
