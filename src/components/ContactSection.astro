@@ -6,6 +6,11 @@ const socialLinks = [
     icon: 'M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z',
   },
 ]
+
+const registrationLinks = {
+  open5km: 'https://time4s.pl/retkinska-piatka-2026-open-5km',
+  dzieci: 'https://time4s.pl/retkinska-piatka-2026-dzieci',
+}
 ---
 
 <section id="kontakt" class="relative py-24 lg:py-32 bg-brand-teal-dark overflow-hidden">
@@ -98,78 +103,156 @@ const socialLinks = [
             Dołącz do nas!
           </h3>
 
-          <p class="text-ink-muted text-sm max-w-xs">
-            Zapisy ruszą wkrótce. Śledź nasz fanpage, żeby nie przegapić startu rejestracji!
-          </p>
-
-          <!-- CTA Button -->
-          <button
-            type="button"
-            class="btn-primary w-full max-w-xs justify-center text-lg py-4 cursor-pointer btn-zapisz-toast"
-          >
-            <span>Zapisz się na bieg</span>
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-            </svg>
-          </button>
+          <!-- CTA Buttons: two distances -->
+          <div class="flex flex-col gap-3 w-full max-w-xs">
+            <a
+              href={registrationLinks.open5km}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn-primary w-full justify-center text-lg py-4"
+            >
+              <span>Bieg główny 5 km</span>
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </a>
+            <a
+              href={registrationLinks.dzieci}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn-primary-outline w-full justify-center text-base py-3"
+            >
+              <span>Bieg dzieci</span>
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </a>
+          </div>
 
           <!-- Divider -->
           <div class="w-16 h-px bg-ink/10"></div>
 
           <!-- Quick links -->
           <div class="flex gap-6 text-sm">
-            <a href="#" class="text-brand-teal hover:text-brand-teal-dark transition-colors font-headline uppercase tracking-wide">
-              Regulamin
+            <a
+              href="https://www.facebook.com/profile.php?id=61576316956069"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-brand-teal hover:text-brand-teal-dark transition-colors font-headline uppercase tracking-wide"
+            >
+              Fanpage
             </a>
-            <a href="#" class="text-brand-teal hover:text-brand-teal-dark transition-colors font-headline uppercase tracking-wide">
+            <a href="#poprzednie-edycje" class="text-brand-teal hover:text-brand-teal-dark transition-colors font-headline uppercase tracking-wide">
               Wyniki 2025
             </a>
           </div>
         </div>
       </div>
 
-      <!-- Toast notification -->
-      <div
-        id="toast-zapisz"
-        class="fixed top-24 left-1/2 -translate-x-1/2 z-50 bg-brand-teal text-white px-6 py-5 rounded-xl shadow-2xl opacity-0 -translate-y-4 pointer-events-none transition-all duration-300 max-w-md text-center"
+    </div>
+  </div>
+
+  <!-- Registration dropdown (anchored under whichever "Zapisz się" button was clicked) -->
+  <div
+    id="dropdown-zapisz"
+    class="fixed z-[60] w-64 bg-white shadow-2xl border border-ink/10 opacity-0 scale-95 pointer-events-none origin-top transition-[opacity,transform] duration-150"
+    role="menu"
+    aria-hidden="true"
+  >
+    <div class="p-3 flex flex-col gap-2">
+      <a
+        href={registrationLinks.open5km}
+        target="_blank"
+        rel="noopener noreferrer"
+        role="menuitem"
+        class="btn-primary w-full justify-between text-sm py-3 px-4"
       >
-        <div class="space-y-3">
-          <p class="text-sm font-medium">Zapisy jeszcze nie są otwarte.<br/>Śledź nasz fanpage, żeby nie przegapić startu rejestracji!</p>
-          <a
-            href="https://www.facebook.com/profile.php?id=61576316956069"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="inline-flex items-center gap-2 bg-white text-brand-teal font-headline text-sm uppercase tracking-wide px-4 py-2 rounded-lg hover:bg-brand-gold hover:text-brand-teal-dark transition-colors duration-200"
-          >
-            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-            </svg>
-            Fanpage Retkińska Piątka
-          </a>
-        </div>
-      </div>
+        <span>Bieg główny</span>
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+        </svg>
+      </a>
+      <a
+        href={registrationLinks.dzieci}
+        target="_blank"
+        rel="noopener noreferrer"
+        role="menuitem"
+        class="btn-primary-outline w-full justify-between text-sm py-3 px-4"
+      >
+        <span>Bieg dzieci</span>
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+        </svg>
+      </a>
     </div>
   </div>
 </section>
 
 <script>
-  let timeout: ReturnType<typeof setTimeout>;
+  const dropdown = document.getElementById('dropdown-zapisz')
+  let currentAnchor: HTMLElement | null = null
+
+  function positionDropdown(anchor: HTMLElement) {
+    if (!dropdown) return
+    const rect = anchor.getBoundingClientRect()
+    const gap = 8
+    const margin = 8
+    const ddWidth = dropdown.offsetWidth
+    const viewportWidth = document.documentElement.clientWidth
+
+    let left = rect.right - ddWidth
+    if (left < margin) left = margin
+    if (left + ddWidth > viewportWidth - margin) left = viewportWidth - ddWidth - margin
+
+    dropdown.style.top = `${rect.bottom + gap}px`
+    dropdown.style.left = `${left}px`
+  }
+
+  function openDropdown(anchor: HTMLElement) {
+    if (!dropdown) return
+    currentAnchor = anchor
+    positionDropdown(anchor)
+    dropdown.classList.remove('opacity-0', 'scale-95', 'pointer-events-none')
+    dropdown.classList.add('opacity-100', 'scale-100')
+    dropdown.setAttribute('aria-hidden', 'false')
+  }
+
+  function closeDropdown() {
+    if (!dropdown) return
+    currentAnchor = null
+    dropdown.classList.add('opacity-0', 'scale-95', 'pointer-events-none')
+    dropdown.classList.remove('opacity-100', 'scale-100')
+    dropdown.setAttribute('aria-hidden', 'true')
+  }
 
   document.addEventListener('click', (e) => {
-    const btn = (e.target as HTMLElement).closest('.btn-zapisz-toast');
-    if (!btn) return;
+    const target = e.target as HTMLElement
+    const opener = target.closest('.btn-zapisz-dropdown') as HTMLElement | null
+    if (opener) {
+      e.preventDefault()
+      if (currentAnchor === opener) {
+        closeDropdown()
+      } else {
+        openDropdown(opener)
+      }
+      return
+    }
+    if (currentAnchor && !dropdown?.contains(target)) {
+      closeDropdown()
+    }
+  })
 
-    e.preventDefault();
-    const toast = document.getElementById('toast-zapisz');
-    if (!toast) return;
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && currentAnchor) {
+      closeDropdown()
+    }
+  })
 
-    clearTimeout(timeout);
-    toast.classList.remove('opacity-0', '-translate-y-4', 'pointer-events-none');
-    toast.classList.add('opacity-100', 'translate-y-0');
+  window.addEventListener('resize', () => {
+    if (currentAnchor) positionDropdown(currentAnchor)
+  })
 
-    timeout = setTimeout(() => {
-      toast.classList.add('opacity-0', '-translate-y-4', 'pointer-events-none');
-      toast.classList.remove('opacity-100', 'translate-y-0');
-    }, 3000);
-  });
+  window.addEventListener('scroll', () => {
+    if (currentAnchor) positionDropdown(currentAnchor)
+  }, { passive: true })
 </script>
