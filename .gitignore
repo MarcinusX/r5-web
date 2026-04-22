@@ -23,6 +23,9 @@ pnpm-debug.log*
 # jetbrains setting folder
 .idea/
 
+# Claude Code local settings
+.claude/settings.local.json
+
 # Source video files (too large for git)
 public/*.mov
 public/ffmpeg2pass-*.log
