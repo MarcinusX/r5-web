@@ -62,31 +62,31 @@ const navLinks = [
       </button>
     </div>
   </div>
-
-  <!-- Mobile Menu -->
-  <div
-    class="fixed inset-0 bg-brand-teal-dark/98 backdrop-blur-sm lg:hidden opacity-0 pointer-events-none transition-opacity duration-300"
-    id="mobile-menu"
-  >
-    <div class="flex flex-col items-center justify-center h-full gap-8">
-      {navLinks.map((link, index) => (
-        <a
-          href={link.href}
-          class="font-display text-3xl text-white hover:text-brand-yellow transition-colors mobile-nav-link"
-          style={`transition-delay: ${index * 50}ms`}
-        >
-          {link.label}
-        </a>
-      ))}
-      <button
-        type="button"
-        class="btn-primary mt-4 btn-zapisz-dropdown cursor-pointer"
-      >
-        Zapisz się
-      </button>
-    </div>
-  </div>
 </nav>
+
+<!-- Mobile Menu (outside <nav> so scrolled backdrop-filter doesn't trap its fixed positioning) -->
+<div
+  class="fixed inset-0 bg-brand-teal-dark/98 backdrop-blur-sm lg:hidden opacity-0 pointer-events-none transition-opacity duration-300 z-40"
+  id="mobile-menu"
+>
+  <div class="flex flex-col items-center justify-center h-full gap-8">
+    {navLinks.map((link, index) => (
+      <a
+        href={link.href}
+        class="font-display text-3xl text-white hover:text-brand-yellow transition-colors mobile-nav-link"
+        style={`transition-delay: ${index * 50}ms`}
+      >
+        {link.label}
+      </a>
+    ))}
+    <button
+      type="button"
+      class="btn-primary mt-4 btn-zapisz-dropdown cursor-pointer"
+    >
+      Zapisz się
+    </button>
+  </div>
+</div>
 
 <style>
   #mobile-menu-btn {
