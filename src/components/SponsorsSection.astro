@@ -30,6 +30,11 @@ const sponsors = [
     logo: "/sponsors/grot.png",
     url: "https://zpmgrot.pl/pl/",
   },
+  {
+    name: "Święcicki Zdrój",
+    logo: "/sponsors/swiecicki.png",
+    url: "https://swiecickizdroj.pl/",
+  },
 ];
 
 const visibleSponsors = sponsors.filter((s) => !s.hidden);
@@ -72,7 +77,7 @@ const visibleSponsors = sponsors.filter((s) => !s.hidden);
     <div class="text-center mb-10">
       <h3 class="section-heading section-heading--sm text-ink">Partnerzy</h3>
     </div>
-    <div class="flex flex-wrap justify-center gap-8 lg:gap-12 mb-20">
+    <div class="flex flex-wrap justify-center gap-8 lg:gap-12 mb-20 mx-auto max-w-5xl">
       {visibleSponsors.map((sponsor) => (
         <a
           href={sponsor.url}
