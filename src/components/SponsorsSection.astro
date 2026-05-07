@@ -35,9 +35,31 @@ const sponsors = [
     logo: "/sponsors/swiecicki.png",
     url: "https://swiecickizdroj.pl/",
   },
+  {
+    name: "Netto",
+    logo: "/sponsors/netto.png",
+    url: "https://netto.pl/",
+    caption: ["ul. Wyszyńskiego 107", "ul. Maratońska 109A"],
+    captionOffset: -32,
+  },
 ];
 
 const visibleSponsors = sponsors.filter((s) => !s.hidden);
+
+// Split sponsors into rows of up to 3, but rebalance so the last row never has
+// just a single item (e.g. 7 -> 3/2/2 instead of 3/3/1, 4 -> 2/2 instead of 3/1).
+function arrangeRows(items) {
+  const rows = [];
+  for (let i = 0; i < items.length; i += 3) {
+    rows.push(items.slice(i, i + 3));
+  }
+  if (rows.length >= 2 && rows[rows.length - 1].length === 1) {
+    rows[rows.length - 1].unshift(rows[rows.length - 2].pop());
+  }
+  return rows;
+}
+
+const sponsorRows = arrangeRows(visibleSponsors);
 ---
 
 <section id="partnerzy" class="relative py-24 lg:py-32 bg-paper overflow-hidden">
@@ -77,25 +99,39 @@ const visibleSponsors = sponsors.filter((s) => !s.hidden);
     <div class="text-center mb-10">
       <h3 class="section-heading section-heading--sm text-ink">Partnerzy</h3>
     </div>
-    <div class="flex flex-wrap justify-center gap-8 lg:gap-12 mb-20 mx-auto max-w-5xl">
-      {visibleSponsors.map((sponsor) => (
-        <a
-          href={sponsor.url}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="sponsor-card group"
-          title={sponsor.name}
-        >
-          <div class="sponsor-logo-wrap">
-            <img
-              src={sponsor.logo}
-              alt={sponsor.name}
-              class="sponsor-logo"
-              loading="lazy"
-              style={sponsor.scale ? `transform: scale(${sponsor.scale});` : undefined}
-            />
-          </div>
-        </a>
+    <div class="flex flex-col items-center gap-8 lg:gap-12 mb-20 mx-auto max-w-5xl">
+      {sponsorRows.map((row) => (
+        <div class="flex flex-wrap justify-center gap-8 lg:gap-12">
+          {row.map((sponsor) => (
+            <a
+              href={sponsor.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="sponsor-card group"
+              title={sponsor.name}
+            >
+              <div class="sponsor-logo-wrap">
+                <img
+                  src={sponsor.logo}
+                  alt={sponsor.name}
+                  class="sponsor-logo"
+                  loading="lazy"
+                  style={sponsor.scale ? `transform: scale(${sponsor.scale});` : undefined}
+                />
+              </div>
+              {sponsor.caption && (
+                <div
+                  class="sponsor-caption"
+                  style={sponsor.captionOffset !== undefined ? `margin-top: ${sponsor.captionOffset}px;` : undefined}
+                >
+                  {Array.isArray(sponsor.caption)
+                    ? sponsor.caption.map((line) => <div>{line}</div>)
+                    : sponsor.caption}
+                </div>
+              )}
+            </a>
+          ))}
+        </div>
       ))}
     </div>
 
@@ -173,5 +209,13 @@ const visibleSponsors = sponsors.filter((s) => !s.hidden);
 
   .sponsor-card:hover .sponsor-logo {
     opacity: 1;
+  }
+
+  .sponsor-caption {
+    margin-top: 0.25rem;
+    font-size: 0.875rem;
+    letter-spacing: 0.02em;
+    color: var(--color-ink-muted, #555);
+    text-align: center;
   }
 </style>
