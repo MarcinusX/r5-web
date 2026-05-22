@@ -1,16 +1,20 @@
 ---
 const scheduleItems = [
-  { time: '08:00', title: 'Otwarcie biura zawodów', description: 'Odbiór pakietów startowych, weryfikacja uczestników' },
-  { time: '09:00', title: 'Rozgrzewka', description: 'Wspólna rozgrzewka z instruktorem' },
-  { time: '09:30', title: 'Ceremonia otwarcia', description: 'Przemówienia, hymn, przygotowanie do startu' },
-  { time: '10:00', title: 'START BIEGU', description: 'Główny bieg na dystansie 5 km', isHighlight: true },
-  { time: '10:30', title: 'Bieg dzieci', description: 'Mini bieg dla najmłodszych uczestników' },
-  { time: '11:00', title: 'Dekoracja zwycięzców', description: 'Wręczenie nagród i medali' },
-  { time: '11:30', title: 'Strefa piknikowa', description: 'Wspólne świętowanie, poczęstunek, atrakcje' },
+  { time: '13:00', title: 'Otwarcie biura zawodów', description: 'Odbiór pakietów startowych: biegi dzieci do 14:30, bieg główny do 15:30' },
+  { time: '14:30', title: 'Piknik rodzinny', description: 'Strefa atrakcji dla całych rodzin (14:30–17:30)' },
+  { time: '14:40', title: 'Rozgrzewka dla dzieci', description: 'Wspólna rozgrzewka przed biegami najmłodszych' },
+  { time: '15:00', title: 'Start biegu 300 m – dzieci', description: 'Rocznik 2020 i młodsi' },
+  { time: '15:10', title: 'Start biegu 500 m – dzieci', description: 'Roczniki 2019–2013' },
+  { time: '15:20', title: 'Bieg na byle czym', description: 'Dostępny dla wszystkich chętnych, bez rejestracji' },
+  { time: '15:30', title: 'Dekoracje biegów dzieci', description: 'Wręczenie nagród najmłodszym uczestnikom' },
+  { time: '15:40', title: 'Wspólna rozgrzewka', description: 'Rozgrzewka przed biegiem głównym' },
+  { time: '16:00', title: 'Start biegu głównego', description: 'Bieg na dystansie 5 km', isHighlight: true },
+  { time: '17:00', title: 'Dekoracja biegu głównego', description: 'Wręczenie nagród i medali' },
+  { time: '17:30', title: 'Zakończenie imprezy', description: 'Planowane zakończenie wydarzenia' },
 ]
 ---
 
-<section id="harmonogram" class="relative py-24 lg:py-32 bg-paper-warm overflow-hidden">
+<section id="harmonogram" class="relative pt-10 lg:pt-14 pb-10 lg:pb-14 bg-paper-warm overflow-hidden">
   <!-- Decorative elements -->
   <div class="absolute top-0 right-0 w-64 h-64 bg-brand-yellow/5 rounded-full -translate-y-1/2 translate-x-1/2" aria-hidden="true"></div>
   <div class="absolute bottom-0 left-0 w-96 h-96 bg-brand-teal/5 rounded-full translate-y-1/2 -translate-x-1/2" aria-hidden="true"></div>
@@ -18,14 +22,9 @@ const scheduleItems = [
   <div class="container-wide relative z-10">
     <!-- Header -->
     <div class="text-center max-w-2xl mx-auto mb-16">
-      <span class="section-label justify-center">Harmonogram</span>
-      <h2 class="font-display text-5xl lg:text-6xl xl:text-7xl text-ink mt-4">
-        Plan<br/>
-        <span class="text-brand-teal">dnia biegu</span>
+      <h2 class="font-display text-5xl lg:text-6xl xl:text-7xl text-brand-teal">
+        Harmonogram
       </h2>
-      <p class="text-ink-muted text-lg mt-6">
-        13 września 2026 roku. Zapisz tę datę w kalendarzu!
-      </p>
     </div>
 
     <!-- Timeline -->
@@ -58,19 +57,6 @@ const scheduleItems = [
           </div>
         </div>
       ))}
-    </div>
-
-    <!-- CTA -->
-    <div class="text-center mt-16">
-      <p class="text-ink-muted mb-6">
-        Szczegółowy regulamin dostępny po rejestracji
-      </p>
-      <button type="button" class="btn-primary bg-brand-teal text-white hover:bg-brand-teal-dark btn-zapisz-dropdown cursor-pointer">
-        <span>Zarejestruj się teraz</span>
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-        </svg>
-      </button>
     </div>
   </div>
 </section>
