@@ -11,6 +11,11 @@ const registrationLinks = {
   open5km: 'https://time4s.pl/retkinska-piatka-2026-open-5km',
   dzieci: 'https://time4s.pl/retkinska-piatka-2026-dzieci',
 }
+
+const startListLinks = {
+  open5km: 'https://time4s.pl/lista-startowa/retkinska-piatka-2026-open-5km',
+  dzieci: 'https://time4s.pl/lista-startowa/retkinska-piatka-2026-dzieci',
+}
 ---
 
 <section id="kontakt" class="relative py-24 lg:py-32 bg-brand-teal-dark overflow-hidden">
@@ -142,6 +147,13 @@ const registrationLinks = {
             >
               Fanpage
             </a>
+            <button
+              type="button"
+              data-dropdown="dropdown-lista"
+              class="text-brand-teal hover:text-brand-teal-dark transition-colors font-headline uppercase tracking-wide cursor-pointer"
+            >
+              Lista startowa
+            </button>
             <a href="#poprzednie-edycje" class="text-brand-teal hover:text-brand-teal-dark transition-colors font-headline uppercase tracking-wide">
               Wyniki 2025
             </a>
@@ -155,7 +167,7 @@ const registrationLinks = {
   <!-- Registration dropdown (anchored under whichever "Zapisz się" button was clicked) -->
   <div
     id="dropdown-zapisz"
-    class="fixed z-[60] w-64 bg-white shadow-2xl border border-ink/10 opacity-0 scale-95 pointer-events-none origin-top transition-[opacity,transform] duration-150"
+    class="js-dropdown fixed z-[60] w-64 bg-white shadow-2xl border border-ink/10 opacity-0 scale-95 pointer-events-none origin-top transition-[opacity,transform] duration-150"
     role="menu"
     aria-hidden="true"
   >
@@ -186,14 +198,48 @@ const registrationLinks = {
       </a>
     </div>
   </div>
+
+  <!-- Start list dropdown (anchored under whichever "Lista startowa" button was clicked) -->
+  <div
+    id="dropdown-lista"
+    class="js-dropdown fixed z-[60] w-64 bg-white shadow-2xl border border-ink/10 opacity-0 scale-95 pointer-events-none origin-top transition-[opacity,transform] duration-150"
+    role="menu"
+    aria-hidden="true"
+  >
+    <div class="p-3 flex flex-col gap-2">
+      <a
+        href={startListLinks.open5km}
+        target="_blank"
+        rel="noopener noreferrer"
+        role="menuitem"
+        class="btn-primary-outline w-full justify-between text-sm py-3 px-4"
+      >
+        <span>Bieg główny</span>
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+        </svg>
+      </a>
+      <a
+        href={startListLinks.dzieci}
+        target="_blank"
+        rel="noopener noreferrer"
+        role="menuitem"
+        class="btn-primary-outline w-full justify-between text-sm py-3 px-4"
+      >
+        <span>Bieg dzieci</span>
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+        </svg>
+      </a>
+    </div>
+  </div>
 </section>
 
 <script>
-  const dropdown = document.getElementById('dropdown-zapisz')
   let currentAnchor: HTMLElement | null = null
+  let currentDropdown: HTMLElement | null = null
 
-  function positionDropdown(anchor: HTMLElement) {
-    if (!dropdown) return
+  function positionDropdown(anchor: HTMLElement, dropdown: HTMLElement) {
     const rect = anchor.getBoundingClientRect()
     const gap = 8
     const margin = 8
@@ -208,36 +254,37 @@ const registrationLinks = {
     dropdown.style.left = `${left}px`
   }
 
-  function openDropdown(anchor: HTMLElement) {
-    if (!dropdown) return
+  function openDropdown(anchor: HTMLElement, dropdown: HTMLElement) {
     currentAnchor = anchor
-    positionDropdown(anchor)
+    currentDropdown = dropdown
+    positionDropdown(anchor, dropdown)
     dropdown.classList.remove('opacity-0', 'scale-95', 'pointer-events-none')
     dropdown.classList.add('opacity-100', 'scale-100')
     dropdown.setAttribute('aria-hidden', 'false')
   }
 
   function closeDropdown() {
-    if (!dropdown) return
+    if (!currentDropdown) return
+    currentDropdown.classList.add('opacity-0', 'scale-95', 'pointer-events-none')
+    currentDropdown.classList.remove('opacity-100', 'scale-100')
+    currentDropdown.setAttribute('aria-hidden', 'true')
     currentAnchor = null
-    dropdown.classList.add('opacity-0', 'scale-95', 'pointer-events-none')
-    dropdown.classList.remove('opacity-100', 'scale-100')
-    dropdown.setAttribute('aria-hidden', 'true')
+    currentDropdown = null
   }
 
   document.addEventListener('click', (e) => {
     const target = e.target as HTMLElement
-    const opener = target.closest('.btn-zapisz-dropdown') as HTMLElement | null
+    const opener = target.closest('[data-dropdown]') as HTMLElement | null
     if (opener) {
       e.preventDefault()
-      if (currentAnchor === opener) {
-        closeDropdown()
-      } else {
-        openDropdown(opener)
-      }
+      const dropdown = document.getElementById(opener.dataset.dropdown || '')
+      if (!dropdown) return
+      const wasOpen = currentAnchor === opener
+      closeDropdown()
+      if (!wasOpen) openDropdown(opener, dropdown)
       return
     }
-    if (currentAnchor && !dropdown?.contains(target)) {
+    if (currentDropdown && !currentDropdown.contains(target)) {
       closeDropdown()
     }
   })
@@ -249,10 +296,10 @@ const registrationLinks = {
   })
 
   window.addEventListener('resize', () => {
-    if (currentAnchor) positionDropdown(currentAnchor)
+    if (currentAnchor && currentDropdown) positionDropdown(currentAnchor, currentDropdown)
   })
 
   window.addEventListener('scroll', () => {
-    if (currentAnchor) positionDropdown(currentAnchor)
+    if (currentAnchor && currentDropdown) positionDropdown(currentAnchor, currentDropdown)
   }, { passive: true })
 </script>

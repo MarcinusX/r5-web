@@ -40,7 +40,15 @@ const navLinks = [
         ))}
         <button
           type="button"
-          class="btn-primary text-xs py-2 px-4 btn-zapisz-dropdown cursor-pointer"
+          class="font-headline text-sm uppercase tracking-wider text-white/80 hover:text-brand-yellow transition-colors duration-200 cursor-pointer nav-link"
+          data-dropdown="dropdown-lista"
+        >
+          Lista startowa
+        </button>
+        <button
+          type="button"
+          class="btn-primary text-xs py-2 px-4 cursor-pointer"
+          data-dropdown="dropdown-zapisz"
         >
           Zapisz się
         </button>
@@ -81,7 +89,15 @@ const navLinks = [
     ))}
     <button
       type="button"
-      class="btn-primary mt-4 btn-zapisz-dropdown cursor-pointer"
+      class="font-display text-3xl text-white hover:text-brand-yellow transition-colors cursor-pointer"
+      data-dropdown="dropdown-lista"
+    >
+      Lista startowa
+    </button>
+    <button
+      type="button"
+      class="btn-primary cursor-pointer"
+      data-dropdown="dropdown-zapisz"
     >
       Zapisz się
     </button>
