@@ -1,0 +1,207 @@
+---
+import Layout from '../layouts/Layout.astro'
+
+const base = import.meta.env.BASE_URL
+---
+
+<Layout
+  title="Dzień dobry, Sante! | Retkińska Piątka"
+  description="Retkińska Piątka dziękuje Sante. Zobacz nagranie z naszego biegu charytatywnego."
+>
+  <main class="sante-page">
+    <!-- Big 5 watermark -->
+    <span class="watermark-5" aria-hidden="true">5</span>
+
+    <section class="container-narrow sante-inner">
+      <!-- Co-branding lockup: R5 ❤ Sante -->
+      <div class="lockup">
+        <img
+          src={`${base}images/logo.png`}
+          alt="Retkińska Piątka"
+          class="lockup-logo lockup-r5"
+        />
+        <svg
+          class="lockup-heart"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          aria-hidden="true"
+        >
+          <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+        </svg>
+        <span class="sante-badge">
+          <img
+            src={`${base}SANTE_logo.png`}
+            alt="Sante"
+            class="lockup-logo lockup-sante"
+          />
+        </span>
+      </div>
+
+      <p class="section-label sante-label">Bieg charytatywny • Łódź-Retkinia</p>
+      <h1 class="font-display sante-title">Dzień dobry, Sante!</h1>
+      <p class="sante-lede">
+        Dziękujemy, że jesteście z nami.<br />Krótkie nagranie wprost
+        z trasy Retkińskiej Piątki — miłego oglądania!
+      </p>
+
+      <!-- Video -->
+      <figure class="video-wrap">
+        <video
+          controls
+          playsinline
+          preload="metadata"
+          poster={`${base}images/hero-cover.png`}
+          class="video-el"
+        >
+          <source src={`${base}dzien_dobry_sante.mp4`} type="video/mp4" />
+          Twoja przeglądarka nie obsługuje odtwarzania wideo.
+          <a href={`${base}dzien_dobry_sante.mp4`}>Pobierz nagranie</a>.
+        </video>
+      </figure>
+
+      <a href={base} class="btn-secondary sante-back">
+        ← Strona główna Retkińskiej Piątki
+      </a>
+
+      <p class="sante-contact">
+        Zapraszam do kontaktu:
+        <a href="mailto:marcin@retkinskapiatka.pl">marcin@retkinskapiatka.pl</a>
+      </p>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  .sante-page {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    background: linear-gradient(
+      160deg,
+      var(--color-brand-teal-dark) 0%,
+      var(--color-brand-teal) 70%
+    );
+    padding: 4rem 0;
+  }
+
+  .sante-page .watermark-5 {
+    top: 50%;
+    right: -4vw;
+    transform: translateY(-50%);
+    opacity: 0.06;
+  }
+
+  .sante-inner {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    color: var(--color-paper);
+  }
+
+  /* Co-branding lockup */
+  .lockup {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(1.5rem, 5vw, 3.5rem);
+    margin: 0 auto 3rem;
+    animation: scaleIn 0.6s ease forwards;
+  }
+
+  .lockup-logo {
+    width: auto;
+    object-fit: contain;
+  }
+
+  .lockup-r5 {
+    height: clamp(6.5rem, 20vw, 10rem);
+  }
+
+  /* White oval behind the Sante logo so its red reads on teal */
+  .sante-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    border-radius: 50%;
+    padding: clamp(0.6rem, 2vw, 1rem) clamp(1.1rem, 3vw, 1.75rem);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
+  }
+
+  .lockup-sante {
+    height: clamp(4.25rem, 13vw, 6.5rem);
+  }
+
+  .lockup-heart {
+    width: clamp(2.75rem, 8vw, 4.25rem);
+    height: clamp(2.75rem, 8vw, 4.25rem);
+    color: #e2001a;
+    flex-shrink: 0;
+    animation: pulse 1.8s ease-in-out infinite;
+  }
+
+  .sante-label {
+    color: var(--color-brand-yellow);
+    justify-content: center;
+  }
+  .sante-label::before {
+    background-color: var(--color-brand-yellow);
+  }
+
+  .sante-title {
+    font-size: clamp(2.75rem, 9vw, 5.5rem);
+    color: white;
+    margin: 0.75rem 0 1rem;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  }
+
+  .sante-lede {
+    font-size: clamp(1.05rem, 2.5vw, 1.35rem);
+    color: rgba(255, 255, 255, 0.9);
+    max-width: 46rem;
+    margin: 0 auto 2.5rem;
+    line-height: 1.6;
+    text-wrap: balance;
+  }
+
+  /* Video */
+  .video-wrap {
+    margin: 0 auto 2.5rem;
+    max-width: 800px;
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.4);
+    background: #000;
+  }
+
+  .video-el {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .sante-back {
+    color: white;
+    border-color: rgba(255, 255, 255, 0.5);
+  }
+
+  .sante-contact {
+    margin-top: 2rem;
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.85);
+  }
+
+  .sante-contact a {
+    color: var(--color-brand-yellow);
+    font-weight: 600;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s ease;
+  }
+
+  .sante-contact a:hover {
+    border-bottom-color: var(--color-brand-yellow);
+  }
+</style>
