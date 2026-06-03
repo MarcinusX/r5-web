@@ -1,4 +1,9 @@
 ---
+const patron = {
+  name: "Patronat Honorowy Prezydenta Miasta Łodzi Hanny Zdanowskiej",
+  logo: "/sponsors/Prezydent-Miasta-Lodzi-Hanna-Zdanowska.png",
+};
+
 const mainPartner = {
   name: "Pizzeria Kultowa",
   logo: "/sponsors/pizzeria-kultowa.webp",
@@ -68,7 +73,7 @@ function arrangeRows(items) {
 const sponsorRows = arrangeRows(visibleSponsors);
 ---
 
-<section id="partnerzy" class="relative pt-24 lg:pt-32 pb-12 lg:pb-16 bg-paper overflow-hidden">
+<section id="partnerzy" class="relative pt-12 lg:pt-16 pb-12 lg:pb-16 bg-paper overflow-hidden">
   <!-- Decorative element -->
   <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-brand-teal via-brand-yellow to-brand-teal"></div>
 
@@ -78,10 +83,25 @@ const sponsorRows = arrangeRows(visibleSponsors);
   </div>
 
   <div class="container-wide relative z-10">
+    <!-- Patronat honorowy -->
+    <div class="text-center mb-20">
+      <h2 class="section-heading text-brand-teal">Patronat honorowy</h2>
+      <div class="flex justify-center mt-8">
+        <div class="patron-logo-wrap">
+          <img
+            src={patron.logo}
+            alt={patron.name}
+            class="patron-logo"
+            loading="lazy"
+          />
+        </div>
+      </div>
+    </div>
+
     <!-- Main partner -->
     <div class="text-center mb-20">
       <h2 class="section-heading text-brand-teal">Partner główny</h2>
-      <div class="flex justify-center mt-10">
+      <div class="flex justify-center mt-1">
         <a
           href={mainPartner.url}
           target="_blank"
@@ -193,7 +213,7 @@ const sponsorRows = arrangeRows(visibleSponsors);
     justify-content: center;
     width: 700px;
     max-width: 90vw;
-    padding: 1rem;
+    padding: 0.25rem 1rem;
   }
 
   .sponsor-logo-wrap {
@@ -203,6 +223,21 @@ const sponsorRows = arrangeRows(visibleSponsors);
     width: 288px;
     height: 144px;
     padding: 1.5rem;
+  }
+
+  .patron-logo-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 280px;
+    max-width: 70vw;
+    padding: 1rem;
+  }
+
+  .patron-logo {
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
   }
 
   .sponsor-logo {

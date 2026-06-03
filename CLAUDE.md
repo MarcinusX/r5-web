@@ -31,19 +31,27 @@ Website for "Retkińska Piątka" - a charity 5km run in Łódź, Poland. The eve
 
 ## Development Commands
 
+This project uses **bun**.
+
 ```bash
 # Install dependencies
-npm install
+bun install
 
 # Start dev server
-npm run dev
+bun dev
 
 # Build for production
-npm run build
+bun run build
 
 # Preview production build
-npm run preview
+bun run preview
 ```
+
+## Verifying Changes (IMPORTANT)
+
+ALWAYS verify visual/UI changes by running the dev server with `bun dev` and
+checking the result in the browser before considering the work done. Do not rely
+on reading the source alone — confirm the change actually renders correctly.
 
 ## Brand Colors (from logo)
 
