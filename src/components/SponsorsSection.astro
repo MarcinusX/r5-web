@@ -4,11 +4,21 @@ const patron = {
   logo: "/sponsors/Prezydent-Miasta-Lodzi-Hanna-Zdanowska.png",
 };
 
-const mainPartner = {
-  name: "Pizzeria Kultowa",
-  logo: "/sponsors/pizzeria-kultowa.webp",
-  url: "https://pizzeriakultowa.pl/",
-};
+const mainPartners = [
+  {
+    name: "Toya",
+    logo: "/sponsors/toya.png",
+    url: "https://toya.net.pl/",
+    width: 450,
+  },
+  {
+    name: "Pizzeria Kultowa",
+    logo: "/sponsors/pizzeria-kultowa.webp",
+    url: "https://pizzeriakultowa.pl/",
+    width: 590,
+    offsetY: -14,
+  },
+];
 
 const sponsors = [
   {
@@ -45,6 +55,11 @@ const sponsors = [
     name: "ZPM Grot",
     logo: "/sponsors/grot.png",
     url: "https://zpmgrot.pl/pl/",
+  },
+  {
+    name: "Eko-System",
+    logo: "/sponsors/ekosystem.webp",
+    url: "https://europalety24.pl/",
   },
   {
     name: "Święcicki Zdrój",
@@ -116,26 +131,34 @@ const sponsorRows = arrangeRows(visibleSponsors);
       </div>
     </div>
 
-    <!-- Main partner -->
-    <div class="text-center mb-20">
-      <h2 class="section-heading text-brand-teal">Partner główny</h2>
-      <div class="flex justify-center mt-1">
-        <a
-          href={mainPartner.url}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="sponsor-card group"
-          title={mainPartner.name}
-        >
-          <div class="main-partner-logo-wrap">
-            <img
-              src={mainPartner.logo}
-              alt={mainPartner.name}
-              class="sponsor-logo"
-              loading="lazy"
-            />
-          </div>
-        </a>
+    <!-- Main partners -->
+    <div class="text-center mt-24 mb-36">
+      <h2 class="section-heading text-brand-teal">Partnerzy główni</h2>
+      <div class="flex flex-wrap justify-center items-center gap-10 lg:gap-16 mt-10">
+        {mainPartners.map((partner) => (
+          <a
+            href={partner.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="sponsor-card group"
+            title={partner.name}
+          >
+            <div
+              class="main-partner-logo-wrap"
+              style={[
+                partner.width ? `width: ${partner.width}px;` : "",
+                partner.offsetY ? `transform: translateY(${partner.offsetY}px);` : "",
+              ].join(" ") || undefined}
+            >
+              <img
+                src={partner.logo}
+                alt={partner.name}
+                class="sponsor-logo"
+                loading="lazy"
+              />
+            </div>
+          </a>
+        ))}
       </div>
     </div>
 
@@ -229,7 +252,7 @@ const sponsorRows = arrangeRows(visibleSponsors);
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 700px;
+    width: 520px;
     max-width: 90vw;
     padding: 0.25rem 1rem;
   }
