@@ -6,6 +6,9 @@ import tailwindcss from '@tailwindcss/vite';
 export default defineConfig({
   site: 'https://retkinskapiatka.pl',
   base: '/',
+  redirects: {
+    '/wolontariat': 'https://forms.gle/bxSCr4jwEUPeNzv38'
+  },
   vite: {
     plugins: [tailwindcss()]
   }
