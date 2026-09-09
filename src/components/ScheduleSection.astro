@@ -1,6 +1,7 @@
 ---
+const base = import.meta.env.BASE_URL;
 const scheduleItems = [
-  { time: '13:00', title: 'Otwarcie biura zawodów', description: 'Odbiór pakietów startowych: biegi dzieci do 14:30, bieg główny do 15:30' },
+  { time: '13:00', title: 'Otwarcie biura zawodów', description: 'Dom parafialny. Odbiór pakietów startowych: biegi dzieci do 14:30, bieg główny do 15:30' },
   { time: '14:30', title: 'Piknik rodzinny', description: 'Strefa atrakcji dla całych rodzin (14:30–17:30)' },
   { time: '14:40', title: 'Rozgrzewka dla dzieci', description: 'Wspólna rozgrzewka przed biegami najmłodszych' },
   { time: '14:50', title: 'Start biegu 300 m – dzieci', description: 'Rocznik 2020 i młodsi' },
@@ -16,21 +17,26 @@ const scheduleItems = [
 ]
 ---
 
-<section id="harmonogram" class="relative pt-10 lg:pt-14 pb-10 lg:pb-14 bg-paper-warm overflow-hidden">
+<section id="harmonogram" class="relative scroll-mt-14 lg:scroll-mt-16 pt-10 lg:pt-14 pb-10 lg:pb-14 bg-paper-warm overflow-hidden">
   <!-- Decorative elements -->
   <div class="absolute top-0 right-0 w-64 h-64 bg-brand-yellow/5 rounded-full -translate-y-1/2 translate-x-1/2" aria-hidden="true"></div>
   <div class="absolute bottom-0 left-0 w-96 h-96 bg-brand-teal/5 rounded-full translate-y-1/2 -translate-x-1/2" aria-hidden="true"></div>
 
   <div class="container-wide relative z-10">
     <!-- Header -->
-    <div class="text-center max-w-2xl mx-auto mb-16">
+    <div class="text-center max-w-2xl mx-auto mb-12 lg:mb-16">
       <h2 class="font-display text-5xl lg:text-6xl xl:text-7xl text-brand-teal">
         Harmonogram
       </h2>
+      <p class="mt-4 text-lg text-ink-muted">
+        Niedziela, 13 września 2026 · Kościół Najświętszej Eucharystii, ul. Popiełuszki 9
+      </p>
     </div>
 
+    <div class="grid gap-12 lg:gap-16 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] max-w-6xl mx-auto items-start">
+
     <!-- Timeline -->
-    <div class="max-w-2xl mx-auto">
+    <div class="max-w-2xl mx-auto w-full">
       {scheduleItems.map((item, index) => (
         <div class={`timeline-item ${item.isHighlight ? 'is-highlight' : ''}`}>
           <!-- Time -->
@@ -59,6 +65,31 @@ const scheduleItems = [
           </div>
         </div>
       ))}
+    </div>
+
+    <!-- Mapa miasteczka -->
+    <div id="miasteczko" class="scroll-mt-24 lg:sticky lg:top-24 max-w-md mx-auto w-full">
+      <a
+        href={`${base}images/mapa-miasteczka.pdf`}
+        target="_blank"
+        rel="noopener"
+        class="group block rounded-lg overflow-hidden shadow-xl ring-1 ring-brand-teal/10 bg-white"
+        title="Otwórz mapę w PDF"
+      >
+        <img
+          src={`${base}images/mapa-miasteczka.png`}
+          alt="Plan miasteczka biegowego przy kościele: meta na ul. Balonowej, scena, punkt medyczny, strefa zabaw, biuro zawodów w domu parafialnym, toalety, szatnia, strefa gastro i strefa partnerów"
+          width="1414"
+          height="2000"
+          loading="lazy"
+          class="w-full h-auto transition-transform duration-500 group-hover:scale-[1.02]"
+        />
+      </a>
+      <p class="mt-3 text-center text-sm text-ink-muted">
+        Kliknij mapę, aby otworzyć ją w pełnym rozmiarze (PDF).
+      </p>
+    </div>
+
     </div>
   </div>
 </section>
