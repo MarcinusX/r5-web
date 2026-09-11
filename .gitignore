@@ -38,3 +38,17 @@ public/trasa-960.mp4
 public/trasa-animowana.mp4
 public/trasa-animowana.webm
 public/nagranie-960.mp4
+
+# Dyplomy / medal 2026 (design/dyplom-2026): w repo tylko źródła, assety i finalne PDF-y
+design/dyplom-2026/out/
+design/dyplom-2026/out-warianty/
+design/dyplom-2026/wersje/
+design/dyplom-2026/figma/out/*
+!design/dyplom-2026/figma/out/dyplomy-komplet.pdf
+!design/dyplom-2026/figma/out/zapasowy-kreski.pdf
+design/dyplom-2026/*.png
+design/dyplom-2026/figma/*.png
+design/dyplom-2026/medal/podglad-*.png
+design/dyplom-2026/fonts/HelveticaNeue-*.ttf
+design/dyplom-2026/**/_tmp/
+wetransfer_*/
