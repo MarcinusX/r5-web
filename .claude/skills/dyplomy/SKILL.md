@@ -26,6 +26,9 @@ Typowe zadania:
 - Zapasowe do ręcznego wpisu: `python3 podmien-tekst.py --blank kreski` (style: linie | zolte | kreski | pusty).
 - Warianty do porównania: `--route-fade 0.35`, `--map-scale 1.15 --map-dy 4`, `--font oswald-light` (przed komendą).
 - Scalony PDF zapisuj z `garbage=4` (deduplikacja tła mapy: 5 MB zamiast 300 MB).
+- **Do drukarni wysyłaj `out/dyplomy-komplet-corel.pdf`** (`python3 eksport-corel.py`): PDF 1.4 bez przezroczystości i fontów,
+  tło jako wspólny raster 300 dpi, napisy jako krzywe. Zwykły `dyplomy-komplet.pdf` (PDF 1.7, przezroczystości, fonty Type0)
+  nie importował się w CorelDRAW w drukarni (12.09.2026).
 
 ## Medal
 
