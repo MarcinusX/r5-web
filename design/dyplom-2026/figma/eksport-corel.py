@@ -10,6 +10,8 @@ na czym wykłada się import w CorelDRAW. Tu każda strona to:
 Strony zapasowe = tło z żółtymi kreskami (też raster).
 
   python3 eksport-corel.py            # -> out/dyplomy-komplet-corel.pdf (9 zapasowych + wszystkie z ../dyplomy.json)
+  TEXT=font python3 eksport-corel.py  # -> out/dyplomy-komplet-corel-font.pdf: napisy jako edytowalny tekst z osadzonym Bebas Neue
+                                      #    (prosty font TrueType/WinAnsi; strony z „Ż” dostają font CID, bo WinAnsi nie ma Ż)
   DPI=400 python3 eksport-corel.py
 """
 import os, sys, json, importlib.util, pathlib
@@ -22,7 +24,8 @@ spec = importlib.util.spec_from_file_location("pt", HERE / "podmien-tekst.py"); 
 
 DPI = int(os.environ.get("DPI", "300"))
 N_BLANK = int(os.environ.get("N_BLANK", "9"))
-OUT = HERE / "out" / "dyplomy-komplet-corel.pdf"
+TEXT_MODE = os.environ.get("TEXT", "curves")     # curves | font
+OUT = HERE / "out" / ("dyplomy-komplet-corel-font.pdf" if TEXT_MODE == "font" else "dyplomy-komplet-corel.pdf")
 
 # ── tła rastrowe (bez napisów) ───────────────────────────────────────────────
 def raster(page):
@@ -78,6 +81,17 @@ def draw_text(page, text, cx, base_y, fs):
     shape.finish(fill=pt.COLOR, color=None, closePath=True, even_odd=False)
     shape.commit()
 
+def draw_text_font(page, text, cx, base_y, fs):
+    """Jak draw_text, ale prawdziwy tekst z osadzonym Bebas Neue: prosty font (WinAnsi) gdy się da, CID dla znaków spoza Latin-1."""
+    simple = all(ord(c) < 256 for c in text)
+    name = "BebasSimple" if simple else "BebasCID"
+    if name not in page._fontnames:
+        page.insert_font(fontname=name, fontfile=str(pt.font_file()), set_simple=simple); page._fontnames.add(name)
+    x = cx - pt.seg_width(text, fs) / 2
+    for seg, sc in pt.segments(text):
+        page.insert_text((x, base_y), seg, fontsize=fs * sc, fontname=name, color=pt.COLOR)
+        x += pt.tlen(seg, fs * sc)
+
 def layout(slot, new_text):
     """Ta sama geometria co pt.replace(): (linie, fs, cx, pierwsza baza, wysokość linii) z szablonu."""
     old, max_w = pt.SLOTS[slot]
@@ -94,10 +108,12 @@ out = fitz.open()
 for _ in range(N_BLANK):
     p = out.new_page(width=PAGE_W, height=PAGE_H); p.insert_image(p.rect, stream=BG_BLANK)
 for it in items:
-    p = out.new_page(width=PAGE_W, height=PAGE_H); p.insert_image(p.rect, stream=BG_NAMED)
+    p = out.new_page(width=PAGE_W, height=PAGE_H); p.insert_image(p.rect, stream=BG_NAMED); p._fontnames = set()
     for slot, text in (("place", f'{it["place"]} MIEJSCE'), ("category", it["category"])):
         lines, fs, cx, first, lh = layout(slot, text)
-        for i, line in enumerate(lines): draw_text(p, line, cx, first + i * lh, fs)
+        for i, line in enumerate(lines):
+            (draw_text_font if TEXT_MODE == "font" else draw_text)(p, line, cx, first + i * lh, fs)
+if TEXT_MODE == "font": out.subset_fonts()
 out.save(OUT, garbage=4, deflate=True, use_objstms=0)
 data = OUT.read_bytes(); OUT.write_bytes(data.replace(b"%PDF-1.7", b"%PDF-1.4", 1))   # brak cech >1.4, nagłówek zgodnie z prawdą
-print(f"-> {OUT.name}: {out.page_count} stron, {OUT.stat().st_size/1e6:.1f} MB, tło {DPI} dpi, napisy jako krzywe")
+print(f"-> {OUT.name}: {out.page_count} stron, {OUT.stat().st_size/1e6:.1f} MB, tło {DPI} dpi, napisy jako {'tekst z osadzonym fontem' if TEXT_MODE == 'font' else 'krzywe'}")
